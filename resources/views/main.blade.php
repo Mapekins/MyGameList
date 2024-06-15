@@ -31,10 +31,18 @@
                 </ul>
             </nav>
         </div>
+		
     </header>
+	<div class="search-bar">
+            <form method="GET">
+                <input type="text" name="search" placeholder="Search for a game...">
+                <button type="submit">Search</button>
+            </form>
+        </div>
     <div class="container">
+		
         <h1>Welcome to the MyGameList website!</h1>
-        <p>Here you can add games to your list and manage them.</p>
+        <p id="intro-text">Here you can add games to your list and manage them. For free.</p>
 
         <section class="top-games">
             <h2>Top 5 Games</h2>

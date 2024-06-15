@@ -65,16 +65,38 @@ header {
     margin: 0 10px;
 }
 
+#intro-text {
+    font-style: italic;
+    font-size: 14px;
+    color: #666;
+	margin: 0;
+	background-color: #f9f9f9;
+}
+
+.search-bar {
+	float: right;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: 10px;
+}
+
+.search-bar input[type="text"] {
+	width: 300px;
+}
+
 .container {
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
+	margin-top: 45px;
     background-color: #fff;
 }
 
-h1 {
+.container h1 {
     font-size: 24px;
     color: #333;
+	margin: 0;
+	background-color: #f9f9f9;
 }
 
 p {
