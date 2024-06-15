@@ -1,0 +1,142 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+}
+
+.header-left button,
+.header-right nav ul li a {
+    background: none;
+    border: none;
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.header-middle {
+    flex: 1;
+    display: flex;
+    justify-content: center; 
+}
+
+.header-middle .logo {
+    font-size: 36px;
+    font-weight: bold;
+    color: #fff; 
+    margin: 0; 
+    padding: 0; 
+}
+
+.header-right {
+    flex: 1; 
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center; 
+}
+
+.header-left {
+    flex: 1; 
+}
+
+.language-selector select {
+    margin-right: 20px;
+    padding: 5px;
+}
+
+.header-right nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.header-right nav ul li {
+    margin: 0 10px;
+}
+
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+p {
+    color: #666;
+}
+
+.top-games, .best-of-the-best {
+    margin-top: 40px;
+}
+
+.top-games ul, .best-of-the-best .best-game {
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.top-games ul li, .best-of-the-best .best-game {
+    display: flex;
+    align-items: center;
+    background-color: #f1f1f1;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.top-games ul li img, .best-of-the-best .best-game img {
+    border-radius: 8px;
+    margin-right: 10px;
+}
+
+.top-games ul li div, .best-of-the-best .best-game div {
+    display: flex;
+    flex-direction: column;
+}
+
+.top-games ul li h3, .best-of-the-best .best-game h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.top-games ul li p, .best-of-the-best .best-game p {
+    margin: 5px 0 0;
+    color: #666;
+}
+
+.all-games {
+    margin-top: 20px;
+}
+
+.game-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-gap: 20px;
+}
+
+.game-item {
+    text-align: center;
+}
+
+.game-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
