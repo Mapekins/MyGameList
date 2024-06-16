@@ -1,10 +1,63 @@
-<x-guest-layout>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - MyGameList</title>
+    <link rel="stylesheet" href="mainstyles.css">
+</head>
+<body>
+<header>
+        <div class="header-left">
+        <a href="{{ route('main') }}">Games</a>
+        <a href="#">Users</a>
+        </div>
+        <div class="header-middle">
+            <a href="{{ route('main') }}" class="logo-link">
+                <h1 class="logo">MyGameList</h1>
+            </a>
+        </div>
+        <div class="header-right">
+            <div class="language-selector">
+                <select>
+                    <option value="en">English</option>
+                    <option value="lv">Latvian</option>
+                    <option value="ru">Russian</option>
+                </select>
+            </div>
+            <nav>
+                <ul>
+                    @guest
+                        <li><a href="{{ route('login') }}">Login</a></li>
+                        <li><a href="{{ route('register') }}">Register</a></li>
+                    @else
+                        <li><a href="#">Game List</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li>
+                            <a href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                                Exit
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                @csrf
+                            </form>
+                        </li>
+                    @endguest
+                </ul>
+            </nav>
+        </div>
+		
+    </header>
+    
+    <div class="register">
+
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
         <!-- Name -->
         <div>
-            <x-input-label for="name" :value="__('Name')" />
+            <x-input-label for="name" :value="__('Username')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
@@ -49,4 +102,4 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+

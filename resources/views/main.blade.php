@@ -9,11 +9,13 @@
 <body>
     <header>
         <div class="header-left">
-            <button>Games</button>
-            <button>Users</button>
+        <a href="{{ route('main') }}">Games</a>
+        <a href="#">Users</a>
         </div>
         <div class="header-middle">
-            <h1 class="logo">MyGameList</h1>
+            <a href="{{ route('main') }}" class="logo-link">
+                <h1 class="logo">MyGameList</h1>
+            </a>
         </div>
         <div class="header-right">
             <div class="language-selector">
@@ -25,9 +27,23 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="#">Game List</a></li>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Exit</a></li>
+                    @guest
+                        <li><a href="{{ route('login') }}">Login</a></li>
+                        <li><a href="{{ route('register') }}">Register</a></li>
+                    @else
+                        <li><a href="#">Game List</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li>
+                            <a href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                                Exit
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                @csrf
+                            </form>
+                        </li>
+                    @endguest
                 </ul>
             </nav>
         </div>
@@ -38,7 +54,7 @@
                 <input type="text" name="search" placeholder="Search for a game...">
                 <button type="submit">Search</button>
             </form>
-        </div>
+    </div>
     <div class="container">
 		
         <h1>Welcome to the MyGameList website!</h1>
@@ -88,7 +104,7 @@
         <section class="best-of-the-best">
             <h2>Best of the Best</h2>
             <div class="best-game">
-                <img src="https://via.placeholder.com/200" alt="Best Game">
+                <img src="https://via.placeholder.com/250" alt="Best Game">
                 <div>
                     <h3>Best Game</h3>
                     <p>This game is the best of the best because...</p>
@@ -100,16 +116,28 @@
 		<h2>All Games</h2>
 		<div class="game-gallery">
 			<div class="game-item">
-				<img src="https://via.placeholder.com/150" alt="Game 1">
+				<img src="https://via.placeholder.com/200" alt="Game 1">
 				<h3>Game 1</h3>
 			</div>
 			<div class="game-item">
-				<img src="https://via.placeholder.com/150" alt="Game 2">
+				<img src="https://via.placeholder.com/200" alt="Game 2">
 				<h3>Game 2</h3>
 			</div>
 			<div class="game-item">
-				<img src="https://via.placeholder.com/150" alt="Game 3">
+				<img src="https://via.placeholder.com/200" alt="Game 3">
 				<h3>Game 3</h3>
+			</div>
+            <div class="game-item">
+				<img src="https://via.placeholder.com/200" alt="Game 4">
+				<h3>Game 4</h3>
+			</div>
+            <div class="game-item">
+				<img src="https://via.placeholder.com/200" alt="Game 5">
+				<h3>Game 5</h3>
+			</div>
+            <div class="game-item">
+				<img src="https://via.placeholder.com/200" alt="Game 6">
+				<h3>Game 6</h3>
 			</div>
 			
 		</div>

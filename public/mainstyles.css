@@ -3,6 +3,12 @@
     margin: 0;
     padding: 0;
     background-color: #f9f9f9;
+    position: relative;
+    height: 100%;
+}
+
+html {
+    height: 100%;
 }
 
 header {
@@ -11,10 +17,13 @@ header {
     align-items: center;
     background-color: #333;
     color: #fff;
-    padding: 10px 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    position: absolute;
+    width: 100%;
 }
 
-.header-left button,
+.header-left a,
 .header-right nav ul li a {
     background: none;
     border: none;
@@ -22,6 +31,10 @@ header {
     margin: 0 10px;
     text-decoration: none;
     font-size: 16px;
+}
+
+.header-left a {
+    margin-left: 23px;
 }
 
 .header-middle {
@@ -38,11 +51,17 @@ header {
     padding: 0; 
 }
 
+.logo-link {
+    text-decoration: none;
+}
+
+
 .header-right {
     flex: 1; 
     display: flex;
     justify-content: flex-end; 
     align-items: center; 
+    padding-right: 10px;
 }
 
 .header-left {
@@ -75,20 +94,19 @@ header {
 
 .search-bar {
 	float: right;
-	margin-top: 10px;
+	margin-top: 75px;
 	margin-bottom: 10px;
 	margin-right: 10px;
 }
 
 .search-bar input[type="text"] {
-	width: 300px;
+	width: 235px;
 }
 
 .container {
-    padding: 20px;
+    padding: 85px 20px;
     max-width: 1200px;
     margin: 0 auto;
-	margin-top: 45px;
     background-color: #fff;
 }
 
@@ -149,7 +167,7 @@ p {
 
 .game-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-gap: 20px;
 }
 
@@ -158,7 +176,62 @@ p {
 }
 
 .game-item img {
-    width: 100%;
-    height: auto;
+    width: 200px; 
+    height: 200px; 
     border-radius: 8px;
 }
+
+.login, .register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+    background-color: #f3f4f6; 
+}
+
+/* login and register styles */
+.login form, .register form {
+    width: 350px; 
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: block;
+    align-items: center;
+    justify-content: center;
+}
+
+.login input[type="email"], .login input[type="password"], .register input[name="email"], .register input[name="name"], .register input[type="password"] {
+    width: 93%;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    font-size: 15px;
+}
+
+.login input[type="checkbox"] {
+    margin-right: 6px;
+    margin-bottom: 15px;
+}
+
+.login button[type="submit"], .register button[type="submit"] {
+    background-color: #4a90e2;
+    color: #ffffff;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    width: 20%;
+    transition: background-color 0.3s ease;
+    float: right;
+}
+
+.register button[type="submit"] {
+    width: 25%;
+}
+
+.login button[type="submit"]:hover, .register button[type="submit"]:hover {
+    background-color: #357bd8;
+}
+
+
