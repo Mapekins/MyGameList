@@ -40,15 +40,15 @@ header {
 .header-middle {
     flex: 1;
     display: flex;
-    justify-content: center; 
+    justify-content: center;
 }
 
 .header-middle .logo {
     font-size: 36px;
     font-weight: bold;
-    color: #fff; 
-    margin: 0; 
-    padding: 0; 
+    color: #fff;
+    margin: 0;
+    padding: 0;
 }
 
 .logo-link {
@@ -57,15 +57,15 @@ header {
 
 
 .header-right {
-    flex: 1; 
+    flex: 1;
     display: flex;
-    justify-content: flex-end; 
-    align-items: center; 
+    justify-content: flex-end;
+    align-items: center;
     padding-right: 10px;
 }
 
 .header-left {
-    flex: 1; 
+    flex: 1;
 }
 
 .language-selector select {
@@ -114,7 +114,6 @@ header {
     font-size: 24px;
     color: #333;
 	margin: 0;
-	background-color: #f9f9f9;
 }
 
 p {
@@ -176,8 +175,8 @@ p {
 }
 
 .game-item img {
-    width: 200px; 
-    height: 200px; 
+    width: 200px;
+    height: 200px;
     border-radius: 8px;
 }
 
@@ -187,12 +186,12 @@ p {
     align-items: center;
     height: 100%;
     margin: 0;
-    background-color: #f3f4f6; 
+    background-color: #f3f4f6;
 }
 
 /* login and register styles */
 .login form, .register form {
-    width: 350px; 
+    width: 350px;
     margin: 0 auto;
     padding: 30px;
     background-color: #ffffff;
@@ -234,4 +233,78 @@ p {
     background-color: #357bd8;
 }
 
+footer {
+    background-color: #111111;
+    margin-top: 40px;
+}
 
+.footer-container {
+    width: 100%;
+    padding: 30px 30px 10px;
+}
+
+/* Footer social icons */
+.social-icons {
+    display: flex;
+    justify-content: center;
+}
+
+.social-icons a {
+    text-decoration: none;
+    padding: 10px;
+    background-color: white;
+    margin: 10px;
+    border-radius: 50%;
+}
+
+.social-icons a i {
+    font-size: 2em;
+    color: black;
+    opacity: 0.9;
+}
+
+/* Hover effect on social icons */
+.social-icons a:hover {
+    background-color: #111;
+    transition: 0.5s;
+}
+
+.social-icons a:hover i {
+    color: white;
+    transition: 0.5s;
+}
+
+/* Footer navigation */
+.footer-nav {
+    margin: 30px 0;
+}
+
+.footer-nav ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+}
+
+.footer-nav ul li a {
+    color: white;
+    margin: 20px;
+    font-size: 1.3em;
+    opacity: 0.7;
+    transition: 0.5s;
+}
+
+/* footer nav items glow on hover */
+.footer-nav ul li a:hover {
+    opacity: 1;
+}
+
+/* footer bottom with copyrights */
+.footer-bottom {
+    background-color: #000;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-bottom p {
+    color: white;
+}
