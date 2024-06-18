@@ -10,6 +10,10 @@ Route::get('/', function () {
     return view('main', ['games' => $games]);
 })->name('main');
 
+Route::get('/search', [GameController::class, 'search'])->name('search');
+
+Route::get('/game/{id}', [GameController::class, 'show'])->name('game.show');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

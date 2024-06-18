@@ -15,5 +15,10 @@
                 <li><a href>Contact Us</a></li>
             </ul>
         </div>
+        <div class="footer-bottom">
+            <ul>
+                <li><p>Maksims Mirgaļejevs - mm23175, Mareks Vasiļevskis - mv*****</p></li>
+                <li><p>All rights reserved.(c)</p></li>
+            </ul>
     </div>
 </footer>

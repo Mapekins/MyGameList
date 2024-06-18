@@ -4,7 +4,7 @@
     padding: 0;
     background-color: #f9f9f9;
     position: relative;
-    height: 100%;
+
 }
 
 html {
@@ -53,6 +53,10 @@ header {
 
 .logo-link {
     text-decoration: none;
+}
+
+.logo-link img {
+    width: 75px;
 }
 
 
@@ -176,8 +180,16 @@ p {
 
 .game-item img {
     width: 200px;
-    height: 200px;
+    height: 275px;
     border-radius: 8px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.leftgame img {
+    width: 300px;
+    height: 400px;
 }
 
 .login, .register {
@@ -236,6 +248,10 @@ p {
 footer {
     background-color: #111111;
     margin-top: 40px;
+    bottom: 0px;
+    position: absolute;
+    width: 100%;
+    margin-top: auto; /* Pushes the footer to the bottom */
 }
 
 .footer-container {
@@ -300,16 +316,13 @@ footer {
 
 /* footer bottom with copyrights */
 .footer-bottom {
-    background-color: #000;
     padding: 20px;
+    padding-top: 1px;
+    padding-bottom: 1px;
     text-align: center;
-}
-
-.footer-bottom p {
-    color: white;
 }
 
 /* bug fix */
 input[type="text"] {
     color: #000; 
-  }
+}

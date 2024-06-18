@@ -19,6 +19,7 @@ class GameSeeder extends Seeder
             'genre' => 'Action-Adventure',
             'release_date' => '2017-03-03',
             'developer' => 'Nintendo EPD',
+            'image' => 'botw.jpg',
         ]);
 
         Game::create([
@@ -27,6 +28,7 @@ class GameSeeder extends Seeder
             'genre' => 'Action-Adventure',
             'release_date' => '2013-09-17',
             'developer' => 'Rockstar North',
+            'image' => 'GTA5.png',
         ]);
         Game::create([
             'name' => 'The Witcher 3: Wild Hunt',
@@ -34,6 +36,7 @@ class GameSeeder extends Seeder
             'genre' => 'RPG',
             'release_date' => '2015-05-19',
             'developer' => 'CD Projekt Red',
+            'image' => 'witcher3.jpg',
         ]);
         Game::create([
             'name' => 'Red Dead Redemption 2',
@@ -41,6 +44,7 @@ class GameSeeder extends Seeder
             'genre' => 'Action-Adventure',
             'release_date' => '2018-10-26',
             'developer' => 'Rockstar Studios',
+            'image' => 'rdr2.jpg',
         ]);
         Game::create([
             'name' => 'Half-Life',
@@ -48,6 +52,7 @@ class GameSeeder extends Seeder
             'genre' => 'FPS',
             'release_date' => '1998-11-19',
             'developer' => 'Valve Corporation',
+            'image' => 'HL1.jpg',
         ]);
         Game::create([
             'name' => 'Half-Life 2',
@@ -55,6 +60,7 @@ class GameSeeder extends Seeder
             'genre' => 'FPS',
             'release_date' => '2004-11-16',
             'developer' => 'Valve Corporation',
+            'image' => 'HL2.jpg',
         ]);
         Game::create([
             'name' => 'Portal',
@@ -62,6 +68,7 @@ class GameSeeder extends Seeder
             'genre' => 'Puzzle-Platformer',
             'release_date' => '2007-10-10',
             'developer' => 'Valve Corporation',
+            'image' => 'Portal.jpg',
         ]);  
         Game::create([
             'name' => 'Portal 2',
@@ -69,6 +76,7 @@ class GameSeeder extends Seeder
             'genre' => 'Puzzle-Platformer',
             'release_date' => '2011-04-18',
             'developer' => 'Valve Corporation',
+            'image' => 'Portal2.jpg',
         ]);    
     }
 }

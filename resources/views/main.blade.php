@@ -3,7 +3,7 @@
         <p class="text-3xl text-black font-bold">Welcome to the MyGameList website!</p>
         <p class="italic mt-2 text-gray-400">Here you can add games to your list and manage them. For free.</p>
         <section class="top-games">
-            <h2>Top 5 Games</h2>
+            <h2 class="font-bold text-xl">Top 5 Games</h2>
             <ul>
                 <li>
                     <img src="https://via.placeholder.com/100" alt="Game 1">
@@ -45,7 +45,7 @@
 </div>
     <div class="container rounded-3xl shadow-inner p-5 pl-8 mt-5 mb-5">
         <section class="best-of-the-best">
-            <h2>Best of the Best</h2>
+            <h2 class="font-bold text-xl">Best of the Best</h2>
             <div class="best-game">
                 <img src="https://via.placeholder.com/250" alt="Best Game">
                 <div>
@@ -56,16 +56,18 @@
         </section>
     </div>
     <div class="container rounded-3xl shadow-inner p-5 pl-8">
-		<section class="all-games">
-		<h2>All Games</h2>
-		<div class="game-gallery">
-			@foreach ($games as $game)
-                    <div class="game-item">
-                        <img src="https://via.placeholder.com/200" alt="{{ $game->name }}">
+     <section class="all-games">
+        <h2 class="font-bold pb-5 text-xl">All Games</h2>
+        <div class="game-gallery">
+            @foreach ($games as $game)
+                <div class="game-item">
+                    <a href="{{ route('game.show', $game->id) }}">
+                        <img src="{{ asset('images/gamelogos/' . $game->image) }}" alt="{{ $game->name }}">
                         <h3>{{ $game->name }}</h3>
-                    </div>
-                @endforeach
+                    </a>
+                </div>
+            @endforeach
         </div>
-		</section>
+    </section>
     </div>
 </x-layout>
