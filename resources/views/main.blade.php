@@ -59,30 +59,12 @@
 		<section class="all-games">
 		<h2>All Games</h2>
 		<div class="game-gallery">
-			<div class="game-item">
-				<img src="https://via.placeholder.com/200" alt="Game 1">
-				<h3>Game 1</h3>
-			</div>
-			<div class="game-item">
-				<img src="https://via.placeholder.com/200" alt="Game 2">
-				<h3>Game 2</h3>
-			</div>
-			<div class="game-item">
-				<img src="https://via.placeholder.com/200" alt="Game 3">
-				<h3>Game 3</h3>
-			</div>
-            <div class="game-item">
-				<img src="https://via.placeholder.com/200" alt="Game 4">
-				<h3>Game 4</h3>
-			</div>
-            <div class="game-item">
-				<img src="https://via.placeholder.com/200" alt="Game 5">
-				<h3>Game 5</h3>
-			</div>
-            <div class="game-item">
-				<img src="https://via.placeholder.com/200" alt="Game 6">
-				<h3>Game 6</h3>
-			</div>
+			@foreach ($games as $game)
+                    <div class="game-item">
+                        <img src="https://via.placeholder.com/200" alt="{{ $game->name }}">
+                        <h3>{{ $game->name }}</h3>
+                    </div>
+                @endforeach
         </div>
 		</section>
     </div>

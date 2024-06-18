@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GameController;
 
 Route::get('/', function () {
-    return view('main');
+    $games = app(GameController::class)->index();
+    
+    return view('main', ['games' => $games]);
 })->name('main');
 
 Route::get('/dashboard', function () {

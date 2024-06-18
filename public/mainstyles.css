@@ -308,3 +308,8 @@ footer {
 .footer-bottom p {
     color: white;
 }
+
+/* bug fix */
+input[type="text"] {
+    color: #000; 
+  }
