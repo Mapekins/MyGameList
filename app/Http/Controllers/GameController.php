@@ -18,7 +18,7 @@ class GameController extends Controller
     public function search(Request $request)
     {
         $validatedData = $request->validate([
-            'search' => 'required|string|alpha_dash',
+            'search' => 'required|string',
         ]);
 
         $query = $validatedData['search'];

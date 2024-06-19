@@ -58,9 +58,11 @@
 {{--BIG container--}}
     <div class="container rounded-3xl shadow-inner mt-4 p-5 pl-8 flex-fill flex flex-col justify-between">
 {{--Left Container--}}
-        <div class="flex-start m-0 mr-4 mb-4">
-            <img src="{{ asset('images/websitelogo/logo.png') }}" class="size-20">
-            <h1>{{$user->name}}</h1>
+        <div class="flex items-start items-center m-0 mr-4 mb-4">
+        <a href="{{ route('user', ['id' => $user->id]) }}" class="flex items-center">
+                    <img src="{{ asset('images/websitelogo/logo.png') }}" class="size-20 rounded-full">
+                    <h1 class="ml-2">{{ $user->name }}</h1>
+                </a>
         </div>
 {{--        Right Container--}}
         <div class="">
