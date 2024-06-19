@@ -1,5 +1,5 @@
 ﻿<x-layout>
-<div class="container rounded-3xl shadow-inner p-5 pl-8 flex">
+<div class="container rounded-3xl shadow-inner p-5 pl-8 flex ">
     <!-- Left Part -->
     <div class="w-1/4 pr-8 leftgame">
         <img src="{{ asset('images/gamelogos/' . $game->image) }}" alt="{{ $game->name }}" class="rounded-lg mb-5">

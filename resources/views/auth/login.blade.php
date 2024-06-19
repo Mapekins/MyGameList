@@ -1,6 +1,6 @@
 <x-layout>
-    
-    <div class="login">
+
+    <div class="container rounded-3xl shadow-inner size-fit p-5 flex">
 
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />

@@ -1,6 +1,6 @@
 <x-layout>
-    
-    <div class="register">
+
+    <div class="container rounded-3xl shadow-inner size-fit p-5 flex">
 
     <form method="POST" action="{{ route('register') }}">
         @csrf
