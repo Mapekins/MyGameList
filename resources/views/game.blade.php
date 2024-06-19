@@ -53,4 +53,22 @@
     </div>
 </div>
 {{-- Reviews --}}
+    @foreach ($reviews as $review)
+           @php($user = $users->firstWhere('id', $review->user_id))
+{{--BIG container--}}
+    <div class="container rounded-3xl shadow-inner mt-4 p-5 pl-8 flex-fill flex flex-col justify-between">
+{{--Left Container--}}
+        <div class="flex-start m-0 mr-4 mb-4">
+            <img src="{{ asset('images/websitelogo/logo.png') }}" class="size-20">
+            <h1>{{$user->name}}</h1>
+        </div>
+{{--        Right Container--}}
+        <div class="">
+            <p class="text-gray-600 text-lg">
+                {{$review->text}}
+            </p>
+        </div>
+        <h1 class="text-end">Rating: {{$review->rating}}</h1>
+    </div>
+    @endforeach
 </x-layout>

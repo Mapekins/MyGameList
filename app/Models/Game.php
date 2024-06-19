@@ -9,11 +9,12 @@ class Game extends Model
 {
     use HasFactory;
     protected $table = 'games';
-    public function gamelist()
+
+    public function gamelists()
     {
-        return $this->hasMany(GameList::class);
+        return $this->belongsToMany(GameList::class);
     }
-    public function review()
+    public function reviews()
     {
         return $this->hasMany(Review::class);
     }

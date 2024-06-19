@@ -12,7 +12,7 @@ class GameList extends Model
     protected $fillable = ['status', 'favorite'];
     public function game()
     {
-        return $this->belongsTo(Game::class, 'game_id');
+        return $this->hasMany(Game::class, 'game_id');
     }
     public function user()
     {

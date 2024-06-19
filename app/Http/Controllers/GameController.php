@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Game;
+use App\Models\Review;
+use App\Models\User;
 
 class GameController extends Controller
 {
@@ -18,7 +20,7 @@ class GameController extends Controller
         $validatedData = $request->validate([
             'search' => 'required|string|alpha_dash',
         ]);
-        
+
         $query = $validatedData['search'];
 
         $games = Game::query()
@@ -28,7 +30,7 @@ class GameController extends Controller
         if ($games->isEmpty()) {
             $message = 'No games found matching your search.';
         } else {
-            $message = null; 
+            $message = null;
         }
 
         return view('searchgame', [
@@ -39,7 +41,9 @@ class GameController extends Controller
 
     public function show($id)
     {
+        $reviews = Review::where('game_id', $id)->orderBy('date')->get();
+        $users = User::whereIn('id', $reviews->pluck('user_id'))->get();
         $game = Game::findOrFail($id);
-        return view('game', compact('game'));
+        return view('game', compact('game', 'users', 'reviews'));
     }
 }
