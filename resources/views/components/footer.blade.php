@@ -17,8 +17,9 @@
         </div>
         <div class="footer-bottom">
             <ul>
-                <li><p>Maksims Mirgaļejevs - mm23175, Mareks Vasiļevskis - mv*****</p></li>
-                <li><p>All rights reserved.(c)</p></li>
+                <li><p>Maksims Mirgaļejevs - mm23175, Mareks Vasiļevskis - mv23041</p></li>
+                <li><p>All rights reserved&copy;</p></li>
             </ul>
+    </div>
     </div>
 </footer>

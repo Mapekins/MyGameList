@@ -12,7 +12,9 @@ class GameListController extends Controller
      */
     public function index()
     {
-        //
+        $userId = Auth::id();
+        $gameList = GameList::where('user_id', $userId)->get();
+        return $gameList;
     }
 
     /**
@@ -28,7 +30,20 @@ class GameListController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'game_id' => 'required',
+            'status' => 'required',
+            'favorite' => 'required'
+        ]);
+
+        $gameList = new GameList();
+        $gameList->user_id = Auth::id();
+        $gameList->game_id = $request->game_id;
+        $gameList->status = $request->status;
+        $gameList->favorite = $request->favorite;
+        $gameList->save();
+
+        return redirect()->route('game_list.show', $gameList);
     }
 
     /**
