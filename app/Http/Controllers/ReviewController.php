@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Game;
 use App\Models\Review;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class ReviewController extends Controller
         $reviews = Review::all()->sortByDesc('date');
         $games = Game::all();
         $users = User::all();
-        return view('posts.index', compact('reviews', 'games', 'users'));
+        return view('review.index', compact('reviews', 'games', 'users'));
     }
 
     /**
@@ -27,7 +28,7 @@ class ReviewController extends Controller
         if (!auth()->check()) {abort(403);}
         $games = Game::all();
         $users = User::all();
-        return view('posts.create', compact('games', 'users'));
+        return view('review.create', compact('games', 'users'));
     }
 
     /**

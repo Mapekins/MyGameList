@@ -44,4 +44,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function gamelist()
+    {
+        return $this->hasOne(GameList::class);
+    }
+    public function review()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

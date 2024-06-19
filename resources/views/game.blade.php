@@ -52,4 +52,5 @@
         </div>
     </div>
 </div>
+{{-- Reviews --}}
 </x-layout>

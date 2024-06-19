@@ -51,7 +51,7 @@ class GameListController extends Controller
      */
     public function show(GameList $gameList)
     {
-        //
+
     }
 
     /**
