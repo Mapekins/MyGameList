@@ -66,7 +66,7 @@
     @auth
         @php($userid = auth()->id())
         @if(!$reviews->contains('user_id',$userid))
-        <x-modal name="ReviewModal" :show="true">
+            <div id="ex1" class="modal">
             <h2 class="text-lg font-bold">Review of {{$game->name}}</h2>
             <form action="{{ route('reviews.store') }}" method="POST" class="flex flex-col">
                 @csrf
@@ -81,13 +81,12 @@
                 <input type="text" id="reviewText" name="text" class="m-5" placeholder="Ohhh... What a great game!"></input>
                 <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md ml-5 mb-3 text-nowrap m-auto">Post review</button>
             </form>
-            <button @click="$dispatch('close-modal', 'ReviewModal')" class="bg-blue-500 text-white px-4 py-2 rounded-md ml-5 mb-3 text-nowrap absolute right-2 bottom-2">Close</button>
-        </x-modal>
+            </div>
         <div class="absolute bottom-4 right-6">
-            <button @click="$dispatch('open-modal', 'ReviewModal')" class="bg-blue-500 text-white px-4 py-2 rounded-md mb-3 text-nowrap">Write Review</button>
+            <a href="#ex1" rel="modal:open"><button class="bg-blue-500 text-white px-4 py-2 rounded-md mb-3 text-nowrap">Write Review</button></a>
         </div>
         @else
-            <x-modal name="EditReviewModal" :show="false">
+            <div id="ex2" class="modal">
                 <h2 class="text-lg font-bold">Review of {{$game->name}}</h2>
                 <form action="{{ route('reviews.update') }}" method="POST" class="flex flex-col">
                     @csrf
@@ -99,13 +98,12 @@
                             <option value="{{ $i }}">{{ $i }} ⭐</option>
                         @endfor
                     </select>
-                    <input type="text" id="reviewText" name="text" class="m-5" placeholder="Ohhh... What a great game!"></input>
-                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md ml-5 mb-3 text-nowrap m-auto">Post review</button>
+                    <input type="text" id="reviewText" name="text" class="m-5" placeholder="Ohhh... What a great game!"/>
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md ml-5 mb-3 text-nowrap m-auto">Edit review</button>
                 </form>
-                <button @click="$dispatch('close-modal', 'EditReviewModal')" class="bg-blue-500 text-white px-4 py-2 rounded-md ml-5 mb-3 text-nowrap absolute right-2 bottom-2">Close</button>
-            </x-modal>
+            </div>
             <div class="absolute bottom-4 right-6">
-                <button @click="$dispatch('open-modal', 'EditReviewModal')" class="bg-blue-500 text-white px-4 py-2 rounded-md mb-3 text-nowrap">Edit Review</button>
+                <a href="#ex2" rel="modal:open"><button class="bg-blue-500 text-white px-4 py-2 rounded-md mb-3 text-nowrap">Edit Review</button></a>
             </div>
             <div class="absolute bottom-20 right-6">
                 <form action="{{ route('reviews.destroy') }}" method="POST">

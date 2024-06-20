@@ -38,10 +38,8 @@
                 <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2">
                     Gamelist
                 </button>
-{{--Reviews list--}}
-                <x-modal name="ReviewModal" :show="true">
+                <div id="ex1" class="modal">
                     <h2 class="text-lg font-bold">{{$user->name}}'s reviews  </h2>
-                    <button @click="$dispatch('close-modal', 'ReviewModal')" class="bg-blue-500 text-white px-4 py-2 rounded-md ml-5 mb-3 text-nowrap absolute right-2 top-2">Close</button>
                     @foreach($reviews as $review)
                         <div class="size-fit m-2 p-2">
                             @php($game = $games->firstWhere('id', $review->game_id))
@@ -49,10 +47,8 @@
                             <p>{{$review->text}}</p>
                         </div>
                     @endforeach
-                </x-modal>
-                <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                    Reviews
-                </button>
+                </div>
+                <a href="#ex1" rel="modal:open"><button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Reviews</button></a>
             </div>
             {{-- Bottom Right Button: Edit Profile --}}
             @auth

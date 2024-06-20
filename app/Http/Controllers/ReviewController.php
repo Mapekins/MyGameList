@@ -55,7 +55,7 @@ class ReviewController extends Controller
             'rating' => 'required|integer|min:1|max:10',
         ]);
         $reviews = Review::all();
-        $review = $reviews->firstWhere('user_id', $request->user_id);
+        $review = $reviews->where('user_id', $request->user_id)->where('game_id', $request->game_id)->first();
         $review->game_id = $request->game_id;
         $review->user_id = $request->user_id;
         $review->text = $request->text;
