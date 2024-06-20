@@ -15,7 +15,7 @@ Route::get('/search', [GameController::class, 'search'])->name('search');
 
 Route::get('/game/{id}', [GameController::class, 'show'])->name('game.show');
 
-Route::get('/user/{id}', [ProfileController::class, 'show'])->name('user');
+Route::get('/user/{id}', [ProfileController::class, 'show'])->name('user.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Review;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\User;
+use App\Models\Game;
 
 class ProfileController extends Controller
 {
@@ -62,7 +64,9 @@ class ProfileController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id); // Example of fetching game by ID from Eloquent model
-        
-        return view('user', compact('user'));
+        $reviews = Review::all();
+        $reviews = $reviews->where('user_id', $user->id);
+        $games = Game::all();
+        return view('user', compact('user', 'reviews', 'games'));
     }
 }

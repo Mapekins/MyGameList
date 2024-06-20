@@ -45,7 +45,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('user', ['id' => Auth::id()]) }}">
+                        <a href="{{ route('user.show', ['id' => Auth::id()]) }}">
                             <button class="rounded-full text-lg text-white bg-blue-400 p-1 px-3 border-2 border-white">Profile</button>
                         </a>
                     </li>
