@@ -14,6 +14,10 @@ use App\Models\Game;
 
 class ProfileController extends Controller
 {
+    public function index(){
+        $users = User::all();
+        return view('users', compact('users'));
+    }
     /**
      * Display the user's profile form.
      */
@@ -68,5 +72,29 @@ class ProfileController extends Controller
         $reviews = $reviews->where('user_id', $user->id);
         $games = Game::all();
         return view('user', compact('user', 'reviews', 'games'));
+    }
+
+    public function search(Request $request)
+    {
+        $validatedData = $request->validate([
+            'search' => 'required|string',
+        ]);
+
+        $query = $validatedData['search'];
+
+        $users = User::query()
+            ->where('name', 'like', "%{$query}%")
+            ->get();
+
+        if ($users->isEmpty()) {
+            $message = 'No games found matching your search.';
+        } else {
+            $message = null;
+        }
+
+        return view('searchusers', [
+            'users' => $users,
+            'message' => $message
+        ]);
     }
 }

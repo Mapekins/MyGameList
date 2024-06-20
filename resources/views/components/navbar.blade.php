@@ -3,7 +3,7 @@
             <a href="{{ route('main') }}" class="text-lg">
                 <button class="rounded-full text-lg text-white bg-blue-400 p-1 px-3 border-2 border-white">Games</button>
             </a>
-            <a href="#" class="text-lg">
+            <a href="{{route('user.index')}}" class="text-lg">
                 <button class="rounded-full text-lg text-white bg-blue-400 p-1 px-3 border-2 border-white">Users</button>
             </a>
         </div>
@@ -14,7 +14,7 @@
             </a>
         </div>
         <div class="flex items-center space-x-4 ml-auto">
-            <form action="{{ route('search') }}" method="GET" class="flex items-center space-x-2">
+            <form action="{{ route('game.search') }}" method="GET" class="flex items-center space-x-2">
                 <input class="rounded-full p-1 px-2" type="text" name="search" placeholder="Search for a game..." required>
                 <button class="rounded-full text-lg text-white bg-blue-400 p-1 px-3 border-2 border-white" type="submit">Search</button>
             </form>

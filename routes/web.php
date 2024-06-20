@@ -11,9 +11,13 @@ Route::get('/', function () {
     return view('main', ['games' => $games]);
 })->name('main');
 
-Route::get('/search', [GameController::class, 'search'])->name('search');
+Route::get('/search', [GameController::class, 'search'])->name('game.search');
 
 Route::get('/game/{id}', [GameController::class, 'show'])->name('game.show');
+
+Route::get('/users', [ProfileController::class, 'index'])->name('user.index');
+
+Route::get('/searchUsers', [ProfileController::class, 'search'])->name('user.search');
 
 Route::get('/user/{id}', [ProfileController::class, 'show'])->name('user.show');
 

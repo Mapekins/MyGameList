@@ -33,7 +33,7 @@ class GameController extends Controller
             $message = null;
         }
 
-        return view('searchgame', [
+        return view('searchGames', [
             'games' => $games,
             'message' => $message
         ]);
