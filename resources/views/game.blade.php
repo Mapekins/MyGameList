@@ -63,10 +63,10 @@
         </div>
     </div>
 {{--    Write review button and review menu--}}
-    @auth
-        @php($userid = auth()->id())
-        @if(!$reviews->contains('user_id',$userid))
-            <div id="ex1" class="modal">
+@auth
+    @php($userid = auth()->id())
+    @if(!$reviews->contains('user_id', $userid))
+        <div id="ex1" class="modal">
             <h2 class="text-lg font-bold">Review of {{$game->name}}</h2>
             <form action="{{ route('reviews.store') }}" method="POST" class="flex flex-col">
                 @csrf
@@ -81,40 +81,40 @@
                 <input type="text" id="reviewText" name="text" class="m-5" placeholder="Ohhh... What a great game!"></input>
                 <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md ml-5 mb-3 text-nowrap m-auto">Post review</button>
             </form>
-            </div>
+        </div>
         <div class="absolute bottom-4 right-6">
             <a href="#ex1" rel="modal:open"><button class="bg-blue-500 text-white px-4 py-2 rounded-md mb-3 text-nowrap">Write Review</button></a>
         </div>
-        @else
-            <div id="ex2" class="modal">
-                <h2 class="text-lg font-bold">Review of {{$game->name}}</h2>
-                <form action="{{ route('reviews.update') }}" method="POST" class="flex flex-col">
-                    @csrf
-                    <input type="hidden" name="game_id" value="{{ $game->id }}"/>
-                    <input type="hidden" name="user_id" value="{{ $userid }}"/>
-                    <select id="reviewRating" name="rating" class="border rounded-md px-3 py-1 w-32 m-5">
-                        <option value="">Select</option>
-                        @for ($i = 1; $i <= 10; $i++)
-                            <option value="{{ $i }}">{{ $i }} ⭐</option>
-                        @endfor
-                    </select>
-                    <input type="text" id="reviewText" name="text" class="m-5" placeholder="Ohhh... What a great game!"/>
-                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md ml-5 mb-3 text-nowrap m-auto">Edit review</button>
-                </form>
-            </div>
-            <div class="absolute bottom-4 right-6">
-                <a href="#ex2" rel="modal:open"><button class="bg-blue-500 text-white px-4 py-2 rounded-md mb-3 text-nowrap">Edit Review</button></a>
-            </div>
-            <div class="absolute bottom-20 right-6">
-                <form action="{{ route('reviews.destroy') }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="game_id" value="{{ $game->id }}"/>
-                    <input type="hidden" name="user_id" value="{{ $userid }}"/>
-                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md mb-3 text-nowrap">Delete Review</button>
-                </form>
-            </div>
-        @endif
-    @endauth
+    @else
+        <div id="ex2" class="modal">
+            <h2 class="text-lg font-bold">Review of {{$game->name}}</h2>
+            <form action="{{ route('reviews.update') }}" method="POST" class="flex flex-col">
+                @csrf
+                <input type="hidden" name="game_id" value="{{ $game->id }}"/>
+                <input type="hidden" name="user_id" value="{{ $userid }}"/>
+                <select id="reviewRating" name="rating" class="border rounded-md px-3 py-1 w-32 m-5" required>
+                    <option value="">Select</option>
+                    @for ($i = 1; $i <= 10; $i++)
+                        <option value="{{ $i }}" {{ $userReview->rating == $i ? 'selected' : '' }}>{{ $i }} ⭐</option>
+                    @endfor
+                </select>
+                <input type="text" id="reviewText" name="text" class="m-5" placeholder="Ohhh... What a great game!" value="{{ $userReview->text }}"/>
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md ml-5 mb-3 text-nowrap m-auto">Edit review</button>
+            </form>
+        </div>
+        <div class="absolute bottom-4 right-6">
+            <a href="#ex2" rel="modal:open"><button class="bg-blue-500 text-white px-4 py-2 rounded-md mb-3 text-nowrap">Edit Review</button></a>
+        </div>
+        <div class="absolute bottom-20 right-6">
+            <form action="{{ route('reviews.destroy') }}" method="POST">
+                @csrf
+                <input type="hidden" name="game_id" value="{{ $game->id }}"/>
+                <input type="hidden" name="user_id" value="{{ $userid }}"/>
+                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md mb-3 text-nowrap">Delete Review</button>
+            </form>
+        </div>
+    @endif
+@endauth
 </div>
 
 {{-- Reviews --}}
