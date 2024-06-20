@@ -46,4 +46,5 @@ class GameController extends Controller
         $game = Game::findOrFail($id);
         return view('game', compact('game', 'users', 'reviews'));
     }
+
 }

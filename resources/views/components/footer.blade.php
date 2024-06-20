@@ -1,25 +1,8 @@
 <footer id="footer">
-    <div class="footer-container">
-        <div class="social-icons">
-            <a href><i class="fab fa-facebook"></i></a>
-            <a href><i class="fab fa-instagram"></i></a>
-            <a href><i class="fab fa-x-twitter"></i></a>
-            <a href><i class="fab fa-google-plus"></i></a>
-            <a href><i class="fab fa-whatsapp"></i></a>
-        </div>
-        <div class="footer-nav">
+        <div class="absolute bottom-0 text-center bg-violet-950 rounded w-full h-18">
             <ul>
-                <li><a href>Home</a></li>
-                <li><a href>News</a></li>
-                <li><a href>About Us</a></li>
-                <li><a href>Contact Us</a></li>
+                <li><p class="text-violet-300 text-lg">Maksims Mirgaļejevs - mm23175, Mareks Vasiļevskis - mv23041</p></li>
+                <li><p class="text-violet-300 text-sm">All rights reserved &copy;</p></li>
             </ul>
         </div>
-        <div class="footer-bottom">
-            <ul>
-                <li><p>Maksims Mirgaļejevs - mm23175, Mareks Vasiļevskis - mv23041</p></li>
-                <li><p>All rights reserved &copy;</p></li>
-            </ul>
-    </div>
-    </div>
 </footer>
