@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('game_lists', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('game_id')->constrained();
             $table->foreignId('user_id')->constrained();
+            $table->foreignId('game_id')->constrained();
             $table->tinyInteger('status');
+            $table->tinyInteger('score');
             $table->boolean('favorite');
             $table->timestamps();
         });

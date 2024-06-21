@@ -87,7 +87,7 @@ class ProfileController extends Controller
             ->get();
 
         if ($users->isEmpty()) {
-            $message = 'No games found matching your search.';
+            $message = 'No users found matching your search.';
         } else {
             $message = null;
         }

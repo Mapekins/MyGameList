@@ -38,7 +38,7 @@ class ReviewFactory extends Factory
         ];
         return [
             'user_id' => $this->faker->numberBetween(1, 19),
-            'game_id' => $this->faker->numberBetween(1, 6),
+            'game_id' => $this->faker->numberBetween(1, 20),
             'text' => $this->faker->randomElement($reviews),
             'rating' => $this->faker->numberBetween(1, 10),
             'date' => now()

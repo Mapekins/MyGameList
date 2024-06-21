@@ -12,7 +12,7 @@ class Game extends Model
 
     public function gamelists()
     {
-        return $this->belongsToMany(GameList::class);
+        return $this->hasMany(GameList::class);
     }
     public function reviews()
     {

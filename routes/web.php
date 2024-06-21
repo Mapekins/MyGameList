@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\GameListController;
 
 Route::get('/', function () {
     $games = app(GameController::class)->index();
@@ -26,11 +27,14 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::post('/reviews/store', [ReviewController::class, 'store'])->name('reviews.store');
-
 Route::post('/reviews/update', [ReviewController::class, 'update'])->name('reviews.update');
-
 Route::post('/reviews/destroy', [ReviewController::class, 'destroy'])->name('reviews.destroy');
 
+Route::post('/game-list/store', [GameListController::class, 'store'])->name('game-list.store');
+Route::post('/game-list/update', [GameListController::class, 'update'])->name('game-list.update');
+Route::post('/game-list/destroy', [GameListController::class, 'destroy'])->name('game-list.destroy');
+
+Route::get('/gamelist', [GameListController::class, 'index'])->name('game-list.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -1,45 +1,117 @@
 ﻿<x-layout>
-<div class="container relative rounded-3xl shadow-inner p-5 pl-8 flex">
-    <!-- Left Part -->
-    <div class="w-1/4 pr-8 leftgame">
-        <img src="{{ asset('images/gamelogos/' . $game->image) }}" alt="{{ $game->name }}" class="rounded-lg mb-5">
-        <div class="mb-3">
-            <label class="block text-lg font-semibold mb-2">Rating:</label>
-            @php($count = 0)
-            @php($sum = 0)
-            @foreach($reviews as $review)
-                @php($count++)
-                @php($sum += $review->rating)
-            @endforeach
-            @if($count == 0)
-                <p>Not yet rated! :(</p>
-            @else
-            @php($rating = number_format($sum / $count, 2, ','))
-                <p class="text-4xl text-blue-400">{{$rating}}⭐</p>
-            @endif
-        </div>
-        <div class="mb-3">
-            <label for="status" class="block text-lg font-semibold mb-2">Status:</label>
-            <select id="status" class="border rounded-md px-3 py-1 w-32">
-                <option value="">Select</option>
-                <option value="playing">Playing</option>
-                <option value="completed">Completed</option>
-                <option value="on-hold">On Hold</option>
-                <option value="dropped">Dropped</option>
-                <option value="plan-to-play">Plan to Play</option>
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="score" class="block text-lg font-semibold mb-2">Your Score:</label>
-            <select id="score" class="border rounded-md px-3 py-1 w-32">
-                <option value="">Select</option>
-                @for ($i = 1; $i <= 10; $i++)
-                    <option value="{{ $i }}">{{ $i }} ⭐</option>
-                @endfor
-            </select>
-        </div>
-        <button class="bg-blue-500 text-white px-4 py-2 rounded-md mb-3">Add</button>
-        <button class="bg-green-500 text-white px-4 py-2 rounded-md">Add to Favorites</button>
+    <div class="container relative rounded-3xl shadow-inner p-5 pl-8 flex">
+        <!-- Left Part -->
+        <div class="w-1/4 pr-8 leftgame">
+            <img src="{{ asset('images/gamelogos/' . $game->image) }}" alt="{{ $game->name }}" class="rounded-lg mb-5">
+            <div class="mb-3">
+                <label class="block text-lg font-semibold mb-2">Rating:</label>
+                @php($count = 0)
+                @php($sum = 0)
+                @foreach($reviews as $review)
+                    @php($count++)
+                    @php($sum += $review->rating)
+                @endforeach
+                @if($count == 0)
+                    <p>Not yet rated! :(</p>
+                @else
+                    @php($rating = number_format($sum / $count, 2, ','))
+                    <p class="text-4xl text-blue-400">{{$rating}}⭐</p>
+                @endif
+            </div>
+
+            @auth
+                @php($userid = auth()->id())
+                @if($userGameListEntry)
+                    <!-- Update form -->
+                    <form action="{{ route('game-list.update') }}" method="POST" class="mb-3">
+                        @csrf
+                        <!-- Hidden input to store game_list_id -->
+                        <input type="hidden" name="game_list_id" value="{{ $userGameListEntry->id }}">
+                        <!-- Other fields -->
+                        <div class="mb-3">
+                            <label for="status" class="block text-lg font-semibold mb-2">Status:</label>
+                            <select id="status" name="status" class="border rounded-md px-3 py-1 w-32" required>
+                                <option value="">Select</option>
+                                <option value="1" {{ $userGameListEntry->status == 1 ? 'selected' : '' }}>Playing</option>
+                                <option value="2" {{ $userGameListEntry->status == 2 ? 'selected' : '' }}>Completed</option>
+                                <option value="3" {{ $userGameListEntry->status == 3 ? 'selected' : '' }}>On-Hold</option>
+                                <option value="4" {{ $userGameListEntry->status == 4 ? 'selected' : '' }}>Dropped</option>
+                                <option value="5" {{ $userGameListEntry->status == 5 ? 'selected' : '' }}>Plan to Play</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="score" class="block text-lg font-semibold mb-2">Your Score:</label>
+                            <select id="score" name="score" class="border rounded-md px-3 py-1 w-32" required>
+                                <option value="">Select</option>
+                                @for ($i = 1; $i <= 10; $i++)
+                                    <option value="{{ $i }}" {{ $userGameListEntry->score == $i ? 'selected' : '' }}>{{ $i }} ⭐</option>
+                                @endfor
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="favorite" class="block text-lg font-semibold mb-2 w-[164px]">Add to Favorites:</label>
+                            <input type="checkbox" id="favorite" name="favorite" value="1" class="border rounded-md px-3 py-1 mb-2" {{ $userGameListEntry->favorite ? 'checked' : '' }}>
+                        </div>
+
+                        <!-- Update button -->
+                        <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-md mr-2">Update</button>
+
+                        <!-- Delete form -->
+                        <form action="{{ route('game-list.destroy') }}" method="POST">
+                            @csrf
+                            <!-- Hidden input to store game_list_id -->
+                            <input type="hidden" name="game_list_id" value="{{ $userGameListEntry->id }}">
+                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md">Delete</button>
+                        </form>
+                    </form>
+                @else
+                    <!-- Add form -->
+                    <form action="{{ route('game-list.store') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="user_id" value="{{ $userid }}"/>
+                        <input type="hidden" name="game_id" value="{{ $game->id }}">
+                        <!-- Other fields -->
+                        <div class="mb-3">
+                            <label for="status" class="block text-lg font-semibold mb-2">Status:</label>
+                            <select id="status" name="status" class="border rounded-md px-3 py-1 w-32" required>
+                                <option value="">Select</option>
+                                <option value="1">Playing</option>
+                                <option value="2">Completed</option>
+                                <option value="3">On-Hold</option>
+                                <option value="4">Dropped</option>
+                                <option value="5">Plan to Play</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="score" class="block text-lg font-semibold mb-2">Your Score:</label>
+                            <select id="score" name="score" class="border rounded-md px-3 py-1 w-32" required>
+                                <option value="">Select</option>
+                                @for ($i = 1; $i <= 10; $i++)
+                                    <option value="{{ $i }}">{{ $i }} ⭐</option>
+                                @endfor
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="favorite" class="block text-lg font-semibold mb-2 w-[164px]">Add to Favorites:</label>
+                            <input type="checkbox" id="favorite" name="favorite" value="1" class="border rounded-md px-3 py-1 mb-2">
+                        </div>
+
+                        <!-- Add button -->
+                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md mb-3">Add</button>
+                    </form>
+                @endif
+            @endauth
+
+@if(session('success'))
+    <div class="alert alert-success text-green-500">
+        {{ session('success') }}
+    </div>
+@endif
+
     </div>
 
     <!-- Right Part -->

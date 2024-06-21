@@ -35,9 +35,11 @@
         <div class="flex flex-col justify-between items-end">
             {{-- Top Right Buttons: Gamelist and Reviews --}}
             <div class="flex">
+            <a href="{{ route('game-list.index') }}">   
                 <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2">
                     Gamelist
                 </button>
+                </a>
                 <div id="ex1" class="modal">
                     <h2 class="text-lg font-bold">{{$user->name}}'s reviews  </h2>
                     @foreach($reviews as $review)

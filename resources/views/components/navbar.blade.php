@@ -40,7 +40,7 @@
                     </li>
                     @else
                     <li>
-                        <a href="#">
+                        <a href="{{ route('game-list.index') }}">
                             <button class="rounded-full text-lg text-white bg-blue-400 p-1 px-3 border-2 border-white">Game List</button>
                         </a>
                     </li>

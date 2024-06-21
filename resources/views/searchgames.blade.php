@@ -3,7 +3,7 @@
 		<section class="all-games">
 		<h2 class="font-bold pb-5 text-xl">Result</h2>
 		@if ($message)
-                <p class="text-gray-600">{{ $message }}</p>
+                <p class="text-red-500">{{ $message }}</p>
             @else
                 <div class="game-gallery">
 				@foreach ($games as $game)

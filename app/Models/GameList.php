@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class GameList extends Model
 {
     use HasFactory;
-    protected $table = 'gamelist';
-    protected $fillable = ['status', 'favorite'];
+    protected $table = 'game_lists';
+    protected $fillable = ['user_id', 'game_id', 'status', 'score', 'favorite'];
     public function game()
     {
-        return $this->hasMany(Game::class, 'game_id');
+        return $this->belongsTo(Game::class, 'game_id');
     }
     public function user()
     {
