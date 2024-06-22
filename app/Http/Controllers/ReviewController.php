@@ -38,6 +38,7 @@ class ReviewController extends Controller
             'user_id' => $request->user_id,
             'text' => $request->text,
             'rating' => $request->rating,
+            'isCritic' => $request->isCritic,
             'date' => now(),
         ]);
         $new_review->save();
@@ -60,6 +61,7 @@ class ReviewController extends Controller
         $review->user_id = $request->user_id;
         $review->text = $request->text;
         $review->rating = $request->rating;
+        $review->isCritic = $request->isCritic;
         $review->save();
         return redirect()->route('game.show', ['id' => $review->game_id]);
     }

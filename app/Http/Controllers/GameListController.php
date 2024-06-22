@@ -13,11 +13,11 @@ class GameListController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(Request $request, $id)
     {
-        $userId = Auth::id();
+        $user = User::findOrFail($id);
         $status = $request->query('status');
-        $gameListQuery = GameList::where('user_id', $userId)->with('game');
+        $gameListQuery = GameList::where('user_id', $user->id)->with('game');
 
         if ($status !== null && in_array($status, [1, 2, 3, 4, 5])) {
             $gameListQuery->where('status', $status);
@@ -27,10 +27,9 @@ class GameListController extends Controller
             $gameListQuery->where('favorite', true);
         }
 
-
         $gameList = $gameListQuery->get();
         $message = $gameList->isEmpty() ? 'No games found matching your filters.' : '';
-        return view('gamelist', compact('gameList', 'message'));
+        return view('gamelist', compact('gameList', 'message', 'user'));
     }
 
     /**
@@ -49,7 +48,6 @@ class GameListController extends Controller
         $request->validate([
             'game_id' => 'required|exists:games,id',
             'status' => 'required|integer',
-            'score' => 'required|integer|min:1|max:10',
             'favorite' => 'boolean'
         ]);
 
@@ -60,7 +58,7 @@ class GameListController extends Controller
                 'user_id' => $request->user_id,
                 'game_id' => $request->game_id,
                 'status' => $request->status,
-                'score' => $request->score,
+                'score' => $request->has('score') ? $request->score : null,
                 'favorite' => $request->has('favorite'),
             ]);
         
@@ -84,7 +82,6 @@ class GameListController extends Controller
         $request->validate([
             'game_list_id' => 'required|exists:game_lists,id',
             'status' => 'required|integer',
-            'score' => 'required|integer|min:1|max:10',
             'favorite' => 'boolean'
         ]);
     

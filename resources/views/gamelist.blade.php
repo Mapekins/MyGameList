@@ -1,35 +1,39 @@
 ﻿<x-layout>
     <div class="container rounded-3xl shadow-inner p-5 pl-8">
         <section class="flex items-center justify-between">
-            <h2 class="font-normal text-xl">
-                Viewing <span class="font-bold">Your</span> Game List
+        <h2 class="font-normal text-xl">
+                @if (isset($user) && $user->id == Auth::id())
+                    Viewing <span class="font-bold">Your</span> Game List
+                @else
+                    Viewing <span class="font-bold">{{ $user->name }}'s</span> Game List
+                @endif
             </h2>
             <div class="flex space-x-4">
-                <a href="{{ route('game-list.index') }}">
+                <a href="{{ route('game-list.index', ['id' => $user->id]) }}">
                     <button class="bg-blue-500 text-white px-4 py-2 rounded-md @if(!request()->has('status') && !request()->has('favorite')) bg-blue-900 @else hover:bg-blue-600 focus:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-opacity-50 @endif">All games</button>
                 </a>
 
-                <a href="{{ route('game-list.index', ['status' => 1]) }}">
+                <a href="{{ route('game-list.index', ['id' => $user->id, 'status' => 1]) }}">
                     <button class="bg-blue-500 text-white px-4 py-2 rounded-md @if(request('status') == 1) bg-blue-900 @else hover:bg-blue-600 focus:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-opacity-50 @endif">Playing</button>
                 </a>
 
-                <a href="{{ route('game-list.index', ['status' => 2]) }}">
+                <a href="{{ route('game-list.index', ['id' => $user->id, 'status' => 2]) }}">
                     <button class="bg-blue-500 text-white px-4 py-2 rounded-md @if(request('status') == 2) bg-blue-900 @else hover:bg-blue-600 focus:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-opacity-50 @endif">Completed</button>
                 </a>
 
-                <a href="{{ route('game-list.index', ['status' => 3]) }}">
+                <a href="{{ route('game-list.index', ['id' => $user->id, 'status' => 3]) }}">
                     <button class="bg-blue-500 text-white px-4 py-2 rounded-md @if(request('status') == 3) bg-blue-900 @else hover:bg-blue-600 focus:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-opacity-50 @endif">On-Hold</button>
                 </a>
 
-                <a href="{{ route('game-list.index', ['status' => 4]) }}">
+                <a href="{{ route('game-list.index', ['id' => $user->id, 'status' => 4]) }}">
                     <button class="bg-blue-500 text-white px-4 py-2 rounded-md @if(request('status') == 4) bg-blue-900 @else hover:bg-blue-600 focus:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-opacity-50 @endif">Dropped</button>
                 </a>
 
-                <a href="{{ route('game-list.index', ['status' => 5]) }}">
+                <a href="{{ route('game-list.index', ['id' => $user->id, 'status' => 5]) }}">
                     <button class="bg-blue-500 text-white px-4 py-2 rounded-md @if(request('status') == 5) bg-blue-900 @else hover:bg-blue-600 focus:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-opacity-50 @endif">Plan to Play</button>
                 </a>
 
-                <a href="{{ route('game-list.index', ['favorite' => 1]) }}">
+                <a href="{{ route('game-list.index', ['id' => $user->id, 'favorite' => 1]) }}">
                     <button class="bg-blue-500 text-white px-4 py-2 rounded-md @if(request('favorite') == 1) bg-blue-900 @else hover:bg-blue-600 focus:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-opacity-50 @endif">Favorites</button>
                 </a>
             </div>
@@ -45,7 +49,18 @@
                             <a href="{{ route('game.show', $game->game_id) }}">
                                 <img src="{{ asset('images/gamelogos/' . $game->game->image) }}" alt="{{ $game->game->name }}" class="shadow-lg border border-gray-400">
                                 <h3>{{ $game->game->name }}</h3>
-                                <h3>Your score: {{ $game->score }}</h3>
+                                <h3>
+                                    
+                                    @if (isset($user) && $user->id == Auth::id())
+                                        @if ($game->score !== null)
+                                            Your score: {{ $game->score }}
+                                        @endif
+                                    @else
+                                         @if ($game->score !== null)
+                                           User's score: {{ $game->score }}
+                                        @endif
+                                    @endif
+                                </h3>
                             </a>
                         </div>
                     @endforeach

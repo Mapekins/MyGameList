@@ -40,7 +40,7 @@
                     </li>
                     @else
                     <li>
-                        <a href="{{ route('game-list.index') }}">
+                    <a href="{{ route('game-list.index', ['id' => Auth::id()]) }}">
                             <button class="rounded-full text-lg text-white bg-blue-400 p-1 px-3 border-2 border-white">Game List</button>
                         </a>
                     </li>

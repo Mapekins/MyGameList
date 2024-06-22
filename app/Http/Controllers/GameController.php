@@ -48,7 +48,13 @@ class GameController extends Controller
         $game = Game::findOrFail($id);
         $userReview = Review::where('game_id', $id)->where('user_id', Auth::id())->first();
         $userGameListEntry = GameList::where('user_id', Auth::id())->where('game_id', $id)->first();
-        return view('game', compact('game', 'reviews', 'users', 'userReview', 'userGameListEntry'));
+
+        $gameListEntries = GameList::where('game_id', $id)->get();
+        $glistUsers = User::whereIn('id', $gameListEntries->pluck('user_id'))->get();
+        $usersforgrade = $users->merge($glistUsers);
+
+        $isCritic = Auth::check() && Auth::user()->hasRole('Critic') ? 1 : 0;
+        return view('game', compact('game', 'reviews', 'users', 'userReview', 'userGameListEntry', 'usersforgrade', 'gameListEntries', 'isCritic'));
     }
 
 }

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Review extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'game_id', 'text', 'rating', 'date'];
+    protected $fillable = ['user_id', 'game_id', 'text', 'rating', 'isCritic', 'date'];
     public function game()
     {
         return $this->belongsTo(Game::class, 'game_id');

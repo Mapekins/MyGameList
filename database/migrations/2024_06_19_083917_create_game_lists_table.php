@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('game_id')->constrained();
             $table->tinyInteger('status');
-            $table->tinyInteger('score');
+            $table->tinyInteger('score')->nullable();
             $table->boolean('favorite');
             $table->timestamps();
         });

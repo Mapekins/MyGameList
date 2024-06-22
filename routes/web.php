@@ -34,7 +34,7 @@ Route::post('/game-list/store', [GameListController::class, 'store'])->name('gam
 Route::post('/game-list/update', [GameListController::class, 'update'])->name('game-list.update');
 Route::post('/game-list/destroy', [GameListController::class, 'destroy'])->name('game-list.destroy');
 
-Route::get('/gamelist', [GameListController::class, 'index'])->name('game-list.index');
+Route::get('/user/{id}/gamelist', [GameListController::class, 'index'])->name('game-list.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
