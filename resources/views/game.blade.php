@@ -1,4 +1,5 @@
 ﻿<x-layout>
+    @php($current_user = auth()->user())
     <div class="container relative rounded-3xl shadow-inner p-5 pl-8 flex">
         <!-- Left Part -->
         <div class="w-1/4 pr-8 leftgame">
@@ -164,6 +165,7 @@
                 @csrf
                 <input type="hidden" name="game_id" value="{{ $game->id }}"/>
                 <input type="hidden" name="user_id" value="{{ $userid }}"/>
+
                 <select id="reviewRating" name="rating" class="border rounded-md px-3 py-1 w-32 m-5" required>
                     <option value="">Select</option>
                     @for ($i = 1; $i <= 10; $i++)
@@ -182,13 +184,13 @@
                 @csrf
                 <input type="hidden" name="game_id" value="{{ $game->id }}"/>
                 <input type="hidden" name="user_id" value="{{ $userid }}"/>
+                <input type="hidden" name="current_user_id" value="{{ $current_user->id }}"/>
                 <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md mb-3 text-nowrap">Delete Review</button>
             </form>
         </div>
     @endif
 @endauth
 </div>
-
 {{-- Reviews --}}
     @foreach ($reviews as $review)
            @php($user = $users->firstWhere('id', $review->user_id))
@@ -207,6 +209,15 @@
                 {{$review->text}}
             </p>
         </div>
+        @if($current_user->hasRole(['Admin', 'Moderator']))
+            <form action="{{ route('reviews.destroy') }}" method="POST" class="text-end">
+                @csrf
+                <input type="hidden" name="game_id" value="{{ $game->id }}"/>
+                <input type="hidden" name="user_id" value="{{ $user->id }}"/>
+                <input type="hidden" name="current_user_id" value="{{ $current_user->id }}"/>
+                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md mb-3 text-nowrap">Delete Review</button>
+            </form>
+        @endif
         <h1 class="text-end">Rating: {{$review->rating}} ⭐</h1>
     </div>
     @endforeach

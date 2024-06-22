@@ -28,14 +28,14 @@
             <p class="text-gray-600 mb-2">Email: {{ $user->email }}</p>
 
             {{-- Role (assuming it's a static text for now) --}}
-            <p class="text-gray-600 mb-4">Role: to do (laravel spatie)</p>
+            <p class="text-gray-600 mb-4">Role: {{$user->getRoleNames()[0]}}</p>
         </div>
 
         {{-- Right Column: Navigation Buttons --}}
         <div class="flex flex-col justify-between items-end">
             {{-- Top Right Buttons: Gamelist and Reviews --}}
             <div class="flex">
-            <a href="{{ route('game-list.index') }}">   
+            <a href="{{ route('game-list.index') }}">
                 <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2">
                     Gamelist
                 </button>

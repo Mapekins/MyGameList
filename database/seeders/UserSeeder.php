@@ -14,27 +14,36 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(50)->create();
+        
+        //Creating filler users
+
+        for($i = 0;$i < 50;$i++){
+            $new_user = User::factory()->create();
+            $new_user->assignRole('Verified user');
+        };
 
         // Creating special users
 
         $admin_user = new User([
-            'name' => 'admin',
+            'name' => 'Admin',
             'email' => 'admin@admin.com',
             'password' => Hash::make('admin')
         ]);
+
         $editor_user = new User([
-            'name' => 'editor',
+            'name' => 'Editor',
             'email' => 'editor@editor.com',
             'password' => Hash::make('editor')
         ]);
+
         $moderator_user = new User([
-            'name' => 'moderator',
+            'name' => 'Moderator',
             'email' => 'moderator@moderator.com',
             'password' => Hash::make('moderator')
         ]);
+
         $critic_user = new User([
-            'name' => 'critic',
+            'name' => 'Critic',
             'email' => 'critic@critic.com',
             'password' => Hash::make('critic')
         ]);
@@ -42,16 +51,22 @@ class UserSeeder extends Seeder
 //        saving special users
 
         $admin_user->save();
+
         $editor_user->save();
+
         $moderator_user->save();
+
         $critic_user->save();
 
 //        assigning roles to them
 
-        $admin_user->assignRole('admin');
-        $editor_user->assignRole('editor');
-        $moderator_user->assignRole('moderator');
-        $critic_user->assignRole('critic');
+        $admin_user->assignRole('Admin');
+
+        $editor_user->assignRole('Editor');
+
+        $moderator_user->assignRole('Moderator');
+
+        $critic_user->assignRole('Critic');
 
     }
 }

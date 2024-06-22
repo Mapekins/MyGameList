@@ -37,8 +37,8 @@ class ReviewFactory extends Factory
             'The ending left me wanting more.',
         ];
         return [
-            'user_id' => $this->faker->numberBetween(1, 19),
-            'game_id' => $this->faker->numberBetween(1, 20),
+            'user_id' => $this->faker->numberBetween(1, 54),
+            'game_id' => $this->faker->numberBetween(1, 26),
             'text' => $this->faker->randomElement($reviews),
             'rating' => $this->faker->numberBetween(1, 10),
             'date' => now()

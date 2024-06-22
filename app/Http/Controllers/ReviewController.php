@@ -72,10 +72,22 @@ class ReviewController extends Controller
         $request->validate([
             'game_id' => 'required',
             'user_id' => 'required',
+            'current_user_id' => 'required'
         ]);
         $reviews = Review::all();
         $review = $reviews->where('user_id', $request->user_id)->where('game_id', $request->game_id)->first();
-        $review->delete();
+        if($request->current_user_id === $request->user_id){
+            $review->delete();
+        }
+        else{
+            $current_user = User::all()->firstWhere('id', $request->current_user_id);
+            if($current_user->hasRole(['Admin', 'Moderator'])){
+                $review->delete();
+            }
+            else{
+                return redirect()->route('error');
+            }
+        }
         return redirect()->route('game.show', ['id' => $request->game_id]);
     }
 }

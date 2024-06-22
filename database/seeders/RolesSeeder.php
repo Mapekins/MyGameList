@@ -15,12 +15,12 @@ class RolesSeeder extends Seeder
     {
 //        Roles
 
-        $default = Role::Create(['name' => 'default']);
-        $default_verified = Role::Create(['name' => 'default_verified']);
-        $critic = Role::Create(['name' => 'critic']);
-        $editor = Role::Create(['name' => 'editor']);
-        $moderator = Role::Create(['name' => 'moderator']);
-        $admin = Role::Create(['name' => 'admin']);
+        $default = Role::Create(['name' => 'Default user']);
+        $default_verified = Role::Create(['name' => 'Verified user']);
+        $critic = Role::Create(['name' => 'Critic']);
+        $editor = Role::Create(['name' => 'Editor']);
+        $moderator = Role::Create(['name' => 'Moderator']);
+        $admin = Role::Create(['name' => 'Admin']);
 
 //        Permissions
 
