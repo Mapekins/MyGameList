@@ -12,7 +12,11 @@
                     @foreach ($users as $user)
                         <div class="text-center border rounded-lg shadow p-1">
                             <a href="{{ route('user.show', ['id' => $user->id]) }}" class="flex flex-col items-center">
-                                <img src="{{ asset('images/websitelogo/logo.png') }}" class="w-20 h-20 rounded-full">
+                                @if($user->profile_picture)
+                                    <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="{{ $user->name }}" class="rounded-full w-20 h-20">
+                                @else
+                                    <img src="{{ asset('images/websitelogo/logo.png') }}" alt="Avatar" class="rounded-full w-20 h-20">
+                                @endif
                                 <p class="text-lg">{{ $user->name }}</p>
                             </a>
                         </div>

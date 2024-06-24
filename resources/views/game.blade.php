@@ -231,7 +231,11 @@
         {{--Left Container--}}
         <div class="flex items-start items-center m-0 mr-4 mb-4">
             <a href="{{ route('user.show', ['id' => $user->id]) }}" class="flex items-center">
-                <img src="{{ asset('images/websitelogo/logo.png') }}" class="size-20 rounded-full">
+                @if($user->profile_picture)
+                    <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="{{ $user->name }}" class="rounded-full w-20 h-20">
+                @else
+                    <img src="{{ asset('images/websitelogo/logo.png') }}" alt="Avatar" class="rounded-full w-20 h-20">
+                @endif
                 <h1 class="ml-2">{{ $user->name }}</h1>
             </a>
         </div>
@@ -264,7 +268,11 @@
 {{--Left Container--}}
         <div class="flex items-start items-center m-0 mr-4 mb-4">
         <a href="{{ route('user.show', ['id' => $user->id]) }}" class="flex items-center">
-                    <img src="{{ asset('images/websitelogo/logo.png') }}" class="size-20 rounded-full">
+                @if($user->profile_picture)
+                    <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="{{ $user->name }}" class="rounded-full w-20 h-20">
+                @else
+                    <img src="{{ asset('images/websitelogo/logo.png') }}" alt="Avatar" class="rounded-full w-20 h-20">
+                @endif
                     <h1 class="ml-2">{{ $user->name }}</h1>
                 </a>
         </div>

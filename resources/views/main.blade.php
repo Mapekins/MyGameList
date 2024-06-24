@@ -59,7 +59,11 @@
                                 <div class="container rounded-3xl shadow-inner m-1 p-1 flex-fill flex flex-col justify-between border-4 border-amber-500">
                                     <div class="flex m-1 p-1">
                                         <a href="{{ route('user.show', ['id' => $user->id]) }}" class="flex items-center">
-                                            <img src="{{ asset('images/websitelogo/logo.png') }}" class="size-10 rounded-full">
+                                            @if($user->profile_picture)
+                                                <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="{{ $user->name }}" class="rounded-full w-20 h-20">
+                                            @else
+                                                <img src="{{ asset('images/websitelogo/logo.png') }}" alt="Avatar" class="rounded-full w-20 h-20">
+                                            @endif
                                             <h1 class="ml-2">{{ $user->name }}</h1>
                                         </a>
                                     </div>
