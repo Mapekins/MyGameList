@@ -257,8 +257,8 @@
         <h1 class="text-end">Rating: {{$review->rating}} ⭐</h1>
 
     </div>
-                @endif
-            @endforeach
+   @endif
+   @endforeach
 {{-- Reviews --}}
     @foreach ($reviews as $review)
            @php($user = $users->firstWhere('id', $review->user_id))
@@ -269,7 +269,7 @@
         <div class="flex items-start items-center m-0 mr-4 mb-4">
         <a href="{{ route('user.show', ['id' => $user->id]) }}" class="flex items-center">
                 @if($user->profile_picture)
-                    <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="{{ $user->name }}" class="rounded-full w-20 h-20">
+                    <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="{{ $user->name }}" class="rounded-full mr-4 w-20 h-20">
                 @else
                     <img src="{{ asset('images/websitelogo/logo.png') }}" alt="Avatar" class="rounded-full w-20 h-20">
                 @endif
@@ -292,7 +292,7 @@
             </form>
         @endif
         <h1 class="text-end">Rating: {{$review->rating}} ⭐</h1>
-        @endif
     </div>
+    @endif
     @endforeach
 </x-layout>

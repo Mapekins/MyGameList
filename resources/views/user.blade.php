@@ -59,7 +59,7 @@
                                 <label for="profile_picture" class="text-gray-700 text-sm font-bold mb-2">Profile Picture: </label>
                                 <input type="file" name="profile_picture" id="profile_picture" class="border rounded w-full py-2 px-3">
                                 <label for="name" class="text-gray-700 text-sm font-bold mt-2">New username: </label>
-                                <input type="text" id="name" name="name" class="required" placeholder="Your new Name" value=""/>
+                                <input type="text" id="name" name="name" class="required" placeholder="(leave it blank, if want to leave it as it is)" value=""/>
                                 <button type="submit" class="bg-blue-500 text-white rounded-md text-nowrap flex size-fit m-2 ml-0 px-2 py-2">Save changes</button>
                             </form>
                     </div>

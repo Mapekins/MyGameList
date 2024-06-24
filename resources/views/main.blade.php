@@ -60,7 +60,7 @@
                                     <div class="flex m-1 p-1">
                                         <a href="{{ route('user.show', ['id' => $user->id]) }}" class="flex items-center">
                                             @if($user->profile_picture)
-                                                <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="{{ $user->name }}" class="rounded-full w-20 h-20">
+                                                <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="{{ $user->name }}" class="rounded-full mr-4 w-20 h-20">
                                             @else
                                                 <img src="{{ asset('images/websitelogo/logo.png') }}" alt="Avatar" class="rounded-full w-20 h-20">
                                             @endif
