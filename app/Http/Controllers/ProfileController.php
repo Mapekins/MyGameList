@@ -22,6 +22,13 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
+    public function edit(Request $request)
+    {
+        $request->validate([
+           'user_id' => 'required',
+           'name' => 'required'
+        ]);
+    }
 
     /**
      * Update the user's profile information.
