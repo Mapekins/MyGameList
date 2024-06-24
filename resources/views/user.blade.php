@@ -1,8 +1,23 @@
 ﻿<x-layout>
     @php($current_user = auth()->user())
     @php($userid = auth()->id())
+    @if (session('success'))
+        <div class="container size-fit bg-green-600 text-white p-4 rounded-md mb-4 font-bold transition-all duration-150 ease-in-out hover:scale-110 hover:bg-green-700">
+            {{ session('success') }}
+        </div>
+    @endif
 
+    @if ($errors->any())
+        <div class="container size-fit bg-red-500 text-white p-4 rounded-md mb-4 font-bold transition-all duration-150 ease-in-out hover:scale-110 hover:bg-red-900">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="container rounded-3xl shadow-inner p-5 pl-8 flex h-[500px] w-[1200px]">
+{{-- Massege to user about password--}}
         {{-- Left Column: Avatar and Upload Avatar Button --}}
         <div class="flex flex-col items-center mr-8">
             {{-- Avatar --}}
@@ -32,7 +47,7 @@
             {{-- Top Right Buttons: Gamelist and Reviews --}}
             <div class="flex">
             <a href="{{ route('game-list.index', ['id' => $user->id]) }}">
-                <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2">
+                <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2 transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600">
                     Gamelist
                 </button>
                 </a>
@@ -46,7 +61,7 @@
                         </div>
                     @endforeach
                 </div>
-                <a href="#ex1" rel="modal:open"><button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Reviews</button></a>
+                <a href="#ex1" rel="modal:open"><button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600">Reviews</button></a>
             </div>
             {{-- Bottom Right Button: Edit Profile --}}
             @auth
@@ -55,16 +70,21 @@
                         <h2 class="text-lg font-bold">Editing Profile</h2>
                             <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data" class="flex flex-col">
                                 @csrf
-                                <input type="hidden" name="user_id" value="{{$userid}}"/>
                                 <label for="profile_picture" class="text-gray-700 text-sm font-bold mb-2">Profile Picture: </label>
                                 <input type="file" name="profile_picture" id="profile_picture" class="border rounded w-full py-2 px-3">
                                 <label for="name" class="text-gray-700 text-sm font-bold mt-2">New username: </label>
-                                <input type="text" id="name" name="name" class="required" placeholder="(leave it blank, if want to leave it as it is)" value=""/>
-                                <button type="submit" class="bg-blue-500 text-white rounded-md text-nowrap flex size-fit m-2 ml-0 px-2 py-2">Save changes</button>
+                                <input type="text" id="name" name="name"  placeholder="(leave it blank, if want to leave it as it is)" value=""/>
+                                <label for="current_password" class="text-gray-700 text-sm font-bold mt-2">Current password: </label>
+                                <input type="password" id="current_password" name="current_password" placeholder="(leave it blank, if want to leave it as it is)" value="" required/>
+                                <label for="new_password" class="text-gray-700 text-sm font-bold mt-2">New password: </label>
+                                <input type="password" id="new_password" name="new_password" placeholder="(leave it blank, if want to leave it as it is)" value=""/>
+                                <label for="new_password_confirmation" class="text-gray-700 text-sm font-bold mt-2">Repeat new password: </label>
+                                <input type="password" id="new_password_confirmation" name="new_password_confirmation"  placeholder="(leave it blank, if want to leave it as it is)" value=""/>
+                                <button type="submit" class="bg-blue-500 text-white rounded-md text-nowrap flex size-fit m-2 ml-0 px-2 py-2 transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600">Save changes</button>
                             </form>
                     </div>
                     <div class="flex flex-wrap gap-2">
-                        <a href="#ex2" rel="modal:open"><button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                        <a href="#ex2" rel="modal:open"><button class="bg-blue-500 text-white font-bold py-2 px-4 rounded transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600">
                         Edit Profile
                     </button></a>
                 @endif
@@ -90,7 +110,7 @@
                                 Admin
                             </option>
                         </select>
-                        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded text-nowrap font-bold">Change Role</button>
+                        <button type="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded text-nowrap transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600">Change Role</button>
                     </form>
                 @endif
                 </div>

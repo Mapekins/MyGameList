@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\Review;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\View\View;
+use Illuminate\Validation\Rules\Password;
+
 use App\Models\User;
 use App\Models\Game;
 
@@ -36,12 +37,17 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'user_id' => 'required',
             'name' => 'nullable',
             'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'current_password' => 'required',
+            'new_password' => ['nullable', 'confirmed', Password::defaults()],
         ]);
 
         $user = Auth::user();
+
+        if (!Hash::check($request->current_password, $user->password)) {
+            return redirect()->back()->withErrors(['current_password' => 'Current password is incorrect']);
+        }
 
         if ($request->hasFile('profile_picture')) {
             if ($user->profile_picture) {
@@ -56,9 +62,13 @@ class ProfileController extends Controller
             $user->name = $request->name;
         }
 
+        if ($request->new_password !== Null) {
+            $user->password = Hash::make($request->new_password);
+        }
+
         $user->save();
 
-        return Redirect::route('profile.update')->with('status', 'profile-updated');
+        return redirect()->back()->with('success', 'Profile updated successfully');
     }
 
     /**

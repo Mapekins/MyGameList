@@ -84,7 +84,7 @@
 
                 <div class="flex">
                 <!-- Update button -->
-                <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-md mr-2">Update</button>
+                <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-md mr-2 transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600">Update</button>
 
                 <!-- Delete form -->
 
@@ -93,7 +93,7 @@
                     @csrf
                     <!-- Hidden input to store game_list_id -->
                     <input type="hidden" name="game_list_id" value="{{ $userGameListEntry->id }}">
-                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md">Delete</button>
+                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600">Delete</button>
                 </form>
             </div>
         @else
@@ -131,7 +131,7 @@
                 </div>
 
                 <!-- Add button -->
-                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md mb-3">Add</button>
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md mb-3 transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600">Add</button>
             </form>
         @endif
     @endauth
@@ -175,18 +175,18 @@
                 <input type="hidden" name="game_id" value="{{ $game->id }}"/>
                 <input type="hidden" name="user_id" value="{{ $userid }}"/>
                 <input type="hidden" name="isCritic" value="{{ $current_user->hasRole('Critic') }}"/>
-                <select id="reviewRating" name="rating" class="border rounded-md px-3 py-1 w-32 m-5 required">
+                <select id="reviewRating" name="rating" class="border rounded-md px-3 py-1 w-32 m-5" required>
                     <option>Select</option>
                     @for ($i = 1; $i <= 10; $i++)
                         <option value="{{ $i }}">{{ $i }} ⭐</option>
                     @endfor
                 </select>
                 <input type="text" id="reviewText" name="text" class="m-5" placeholder="Ohhh... What a great game!"></input>
-                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md ml-5 mb-3 text-nowrap m-auto">Post review</button>
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md ml-5 mb-3 text-nowrap m-auto transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600">Post review</button>
             </form>
         </div>
         <div class="absolute bottom-4 right-6">
-            <a href="#ex1" rel="modal:open"><button class="bg-blue-500 text-white px-4 py-2 rounded-md mb-3 text-nowrap">Write Review</button></a>
+            <a href="#ex1" rel="modal:open"><button class="bg-blue-500 text-white px-4 py-2 rounded-md mb-3 text-nowrap transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600">Write Review</button></a>
         </div>
     @else
         <div id="ex2" class="modal">
@@ -204,11 +204,11 @@
                     @endfor
                 </select>
                 <input type="text" id="reviewText" name="text" class="m-5" placeholder="Ohhh... What a great game!" value="{{ $userReview->text }}"/>
-                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md ml-5 mb-3 text-nowrap m-auto">Edit review</button>
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md ml-5 mb-3 text-nowrap m-auto transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600">Edit review</button>
             </form>
         </div>
         <div class="absolute bottom-4 right-6">
-            <a href="#ex2" rel="modal:open"><button class="bg-blue-500 text-white px-4 py-2 rounded-md mb-3 text-nowrap">Edit Review</button></a>
+            <a href="#ex2" rel="modal:open"><button class="bg-blue-500 text-white px-4 py-2 rounded-md mb-3 text-nowrap transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600">Edit Review</button></a>
         </div>
         <div class="absolute bottom-20 right-6">
             <form action="{{ route('reviews.destroy') }}" method="POST">
@@ -216,7 +216,7 @@
                 <input type="hidden" name="game_id" value="{{ $game->id }}"/>
                 <input type="hidden" name="user_id" value="{{ $userid }}"/>
                 <input type="hidden" name="current_user_id" value="{{ $current_user->id }}"/>
-                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md mb-3 text-nowrap">Delete Review</button>
+                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md mb-3 text-nowrap transition-all duration-150 ease-in-out hover:scale-110 hover:bg-red-900">Delete Review</button>
             </form>
         </div>
     @endif
@@ -230,7 +230,7 @@
     <div class="container rounded-3xl shadow-inner mt-4 p-5 pl-8 flex-fill flex flex-col justify-between border-4 border-amber-500">
         {{--Left Container--}}
         <div class="flex items-start items-center m-0 mr-4 mb-4">
-            <a href="{{ route('user.show', ['id' => $user->id]) }}" class="flex items-center">
+            <a href="{{ route('user.show', ['id' => $user->id]) }}" class="flex items-center transition-all duration-150 ease-in-out hover:scale-95">
                 @if($user->profile_picture)
                     <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="{{ $user->name }}" class="rounded-full w-20 h-20">
                 @else
@@ -251,7 +251,7 @@
                 <input type="hidden" name="game_id" value="{{ $game->id }}"/>
                 <input type="hidden" name="user_id" value="{{ $user->id }}"/>
                 <input type="hidden" name="current_user_id" value="{{ $current_user->id }}"/>
-                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md mb-3 text-nowrap">Delete Review</button>
+                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md mb-3 text-nowrap transition-all duration-150 ease-in-out hover:scale-110 hover:bg-red-900">Delete Review</button>
             </form>
         @endif
         <h1 class="text-end">Rating: {{$review->rating}} ⭐</h1>
@@ -267,7 +267,7 @@
     <div class="container rounded-3xl shadow-inner mt-4 p-5 pl-8 flex-fill flex flex-col justify-between">
 {{--Left Container--}}
         <div class="flex items-start items-center m-0 mr-4 mb-4">
-        <a href="{{ route('user.show', ['id' => $user->id]) }}" class="flex items-center">
+        <a href="{{ route('user.show', ['id' => $user->id]) }}" class="flex items-center transition-all duration-150 ease-in-out hover:scale-95">
                 @if($user->profile_picture)
                     <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="{{ $user->name }}" class="rounded-full mr-4 w-20 h-20">
                 @else
@@ -288,7 +288,7 @@
                 <input type="hidden" name="game_id" value="{{ $game->id }}"/>
                 <input type="hidden" name="user_id" value="{{ $user->id }}"/>
                 <input type="hidden" name="current_user_id" value="{{ $current_user->id }}"/>
-                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md mb-3 text-nowrap">Delete Review</button>
+                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md mb-3 text-nowrap transition-all duration-150 ease-in-out hover:scale-110 hover:bg-red-900">Delete Review</button>
             </form>
         @endif
         <h1 class="text-end">Rating: {{$review->rating}} ⭐</h1>

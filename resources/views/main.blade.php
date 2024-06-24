@@ -13,7 +13,7 @@
                     @endphp
                     <li>
                         <a href="{{ route('game.show', $gameId) }}">
-                        <img src="{{ asset('images/gamelogos/' . $games->firstWhere('id', $gameId)->image) }}" alt="{{ $games->firstWhere('id', $gameId)->name }}" class="shadow-lg border border-gray-400 w-auto h-auto max-w-60 max-h-60">
+                        <img src="{{ asset('images/gamelogos/' . $games->firstWhere('id', $gameId)->image) }}" alt="{{ $games->firstWhere('id', $gameId)->name }}" class="shadow-lg border border-gray-400 mb-2 w-auto h-auto max-w-60 max-h-60 transition-all duration-150 ease-in-out hover:scale-95">
                         <div class="text-wrap size-fit">
                             <h3>{{$gameName}}</h3>
                             <p>Rating: {{$averageRating}}⭐</p>
@@ -29,7 +29,7 @@
             <h2 class="font-bold text-xl">Best of the Best</h2>
             <div class="best-game">
                 <a href="{{ route('game.show', $averageRatings[0]['game_id']) }}">
-                <img src="{{asset('images/gamelogos/' . $games->firstWhere('id',$averageRatings[0]['game_id'])->image)}}" alt="{{ $games->firstWhere('id', $averageRatings[0]['game_id'])->name }}" class="shadow-lg border border-gray-400 w-auto h-auto max-w-80 max-h-80">
+                <img src="{{asset('images/gamelogos/' . $games->firstWhere('id',$averageRatings[0]['game_id'])->image)}}" alt="{{ $games->firstWhere('id', $averageRatings[0]['game_id'])->name }}" class="shadow-lg border border-gray-400 w-auto h-auto max-w-80 max-h-80 transition-all duration-150 ease-in-out hover:scale-95">
                 <div class="relative">
                     <h1 class="text-4xl font-bold">{{$games->firstWhere('id',$averageRatings[0]['game_id'])->name}}</h1>
                     <p>Rating: {{$averageRatings[0]['average_rating']}}⭐</p>
@@ -91,7 +91,7 @@
             @foreach ($games as $game)
                 <div class="game-item">
                     <a href="{{ route('game.show', $game->id) }}">
-                        <img src="{{ asset('images/gamelogos/' . $game->image) }}" alt="{{ $game->name }}" class="shadow-lg border border-gray-400">
+                        <img src="{{ asset('images/gamelogos/' . $game->image) }}" alt="{{ $game->name }}" class="shadow-lg border border-gray-400 transition-all duration-150 ease-in-out hover:scale-95">
                         <h3>{{ $game->name }}</h3>
                     </a>
                 </div>
