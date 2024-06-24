@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Review extends Model
 {
     use HasFactory;
+    protected $table = 'reviews';
     protected $fillable = ['user_id', 'game_id', 'text', 'rating', 'date'];
     public function game()
     {

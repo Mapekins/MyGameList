@@ -5,41 +5,22 @@
         <section class="top-games">
             <h2 class="font-bold text-xl">Top 5 Games</h2>
             <ul>
-                <li>
-                    <img src="https://via.placeholder.com/100" alt="Game 1">
-                    <div>
-                        <h3>Game 1</h3>
-                        <p>Grade: 9.5</p>
-                    </div>
-                </li>
-                <li>
-                    <img src="https://via.placeholder.com/100" alt="Game 2">
-                    <div>
-                        <h3>Game 2</h3>
-                        <p>Grade: 9.2</p>
-                    </div>
-                </li>
-                <li>
-                    <img src="https://via.placeholder.com/100" alt="Game 3">
-                    <div>
-                        <h3>Game 3</h3>
-                        <p>Grade: 9.0</p>
-                    </div>
-                </li>
-                <li>
-                    <img src="https://via.placeholder.com/100" alt="Game 4">
-                    <div>
-                        <h3>Game 4</h3>
-                        <p>Grade: 8.8</p>
-                    </div>
-                </li>
-                <li>
-                    <img src="https://via.placeholder.com/100" alt="Game 5">
-                    <div>
-                        <h3>Game 5</h3>
-                        <p>Grade: 8.7</p>
-                    </div>
-                </li>
+                @for($i = 1;$i < 6; $i++)
+                    @php
+                        $gameId = $averageRatings[$i]['game_id'];
+                        $averageRating = $averageRatings[$i]['average_rating'];
+                        $gameName = $games->firstWhere('id', $gameId)->name;
+                    @endphp
+                    <li>
+                        <a href="{{ route('game.show', $gameId) }}">
+                        <img src="{{ asset('images/gamelogos/' . $games->firstWhere('id', $gameId)->image) }}" alt="{{ $games->firstWhere('id', $gameId)->name }}" class="shadow-lg border border-gray-400 w-auto h-auto max-w-60 max-h-60">
+                        <div class="text-wrap size-fit">
+                            <h3>{{$gameName}}</h3>
+                            <p>Rating: {{$averageRating}}⭐</p>
+                        </div>
+                        </a>
+                    </li>
+                @endfor
             </ul>
         </section>
 </div>
@@ -47,11 +28,55 @@
         <section class="best-of-the-best">
             <h2 class="font-bold text-xl">Best of the Best</h2>
             <div class="best-game">
-                <img src="https://via.placeholder.com/250" alt="Best Game">
-                <div>
-                    <h3>Best Game</h3>
-                    <p>This game is the best of the best because...</p>
+                <a href="{{ route('game.show', $averageRatings[0]['game_id']) }}">
+                <img src="{{asset('images/gamelogos/' . $games->firstWhere('id',$averageRatings[0]['game_id'])->image)}}" alt="{{ $games->firstWhere('id', $averageRatings[0]['game_id'])->name }}" class="shadow-lg border border-gray-400 w-auto h-auto max-w-80 max-h-80">
+                <div class="relative">
+                    <h1 class="text-4xl font-bold">{{$games->firstWhere('id',$averageRatings[0]['game_id'])->name}}</h1>
+                    <p>Rating: {{$averageRatings[0]['average_rating']}}⭐</p>
+                    @php
+                        $hasCriticReview = false;
+                    @endphp
+
+                    @foreach ($reviews->where('game_id', $averageRatings[0]['game_id']) as $review)
+                        @php
+                            $user = $users->firstWhere('id', $review->user_id);
+                        @endphp
+                        @if ($user && $user->hasRole('Critic'))
+                            @php
+                                $hasCriticReview = true;
+                            @endphp
+                            @break
+                        @endif
+                    @endforeach
+
+                    @if ($hasCriticReview)
+                        <p>Here are reviews from our Critics:</p>
+                        @foreach ($reviews->where('game_id', $averageRatings[0]['game_id']) as $review)
+                            @php
+                                $user = $users->firstWhere('id', $review->user_id);
+                            @endphp
+                            @if ($user && $user->hasRole('Critic'))
+                                <div class="container rounded-3xl shadow-inner m-1 p-1 flex-fill flex flex-col justify-between border-4 border-amber-500">
+                                    <div class="flex m-1 p-1">
+                                        <a href="{{ route('user.show', ['id' => $user->id]) }}" class="flex items-center">
+                                            <img src="{{ asset('images/websitelogo/logo.png') }}" class="size-10 rounded-full">
+                                            <h1 class="ml-2">{{ $user->name }}</h1>
+                                        </a>
+                                    </div>
+                                    <div class="flex m-1 p-1">
+                                        <p class="text-gray-600 text-lg">
+                                            {{ $review->text }}
+                                        </p>
+                                    </div>
+                                    <h1 class="text-end">Rating: {{ $review->rating }} ⭐</h1>
+                                </div>
+                            @endif
+                        @endforeach
+                    @else
+                        <p>This game is the best because it has high ratings and reviews from general users.</p>
+                    @endif
                 </div>
+                </a>
             </div>
         </section>
     </div>

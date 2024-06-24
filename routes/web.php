@@ -6,11 +6,13 @@ use App\Http\Controllers\GameController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\GameListController;
 
-Route::get('/', function () {
-    $games = app(GameController::class)->index();
+//Route::get('/', function () {
+//    $games = app(GameController::class)->index();
+//
+//    return view('main', ['games' => $games]);
+//})->name('main');
 
-    return view('main', ['games' => $games]);
-})->name('main');
+Route::get('/', [GameController::class, 'index'])->name('main');
 
 Route::get('/search', [GameController::class, 'search'])->name('game.search');
 
