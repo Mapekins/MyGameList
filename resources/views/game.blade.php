@@ -36,7 +36,7 @@
                 <div class="flex items-end">
                     <p class="text-4xl text-blue-400">{{$averageRating}}⭐</p>
                     <p class="text-xl"> ({{$totalCount}} users)</p>
-                </div>       
+                </div>
 
 
             </div>
@@ -174,7 +174,7 @@
                 @csrf
                 <input type="hidden" name="game_id" value="{{ $game->id }}"/>
                 <input type="hidden" name="user_id" value="{{ $userid }}"/>
-                <input type="hidden" name="isCritic" value="{{ $isCritic }}"/>
+                <input type="hidden" name="isCritic" value="{{ $current_user->hasRole('Critic') }}"/>
                 <select id="reviewRating" name="rating" class="border rounded-md px-3 py-1 w-32 m-5 required">
                     <option>Select</option>
                     @for ($i = 1; $i <= 10; $i++)
@@ -195,7 +195,7 @@
                 @csrf
                 <input type="hidden" name="game_id" value="{{ $game->id }}"/>
                 <input type="hidden" name="user_id" value="{{ $userid }}"/>
-                <input type="hidden" name="isCritic" value="{{ $isCritic }}"/>
+                <input type="hidden" name="isCritic" value="{{ $current_user->hasRole('Critic') }}"/>
 
                 <select id="reviewRating" name="rating" class="border rounded-md px-3 py-1 w-32 m-5" required>
                     <option value="">Select</option>
@@ -222,9 +222,43 @@
     @endif
 @endauth
 </div>
+{{--Critic Reviews--}}
+    @foreach ($reviews as $review)
+    @php($user = $users->firstWhere('id', $review->user_id))
+            @if($user->hasRole('Critic'))
+    {{--BIG container--}}
+    <div class="container rounded-3xl shadow-inner mt-4 p-5 pl-8 flex-fill flex flex-col justify-between border-4 border-amber-500">
+        {{--Left Container--}}
+        <div class="flex items-start items-center m-0 mr-4 mb-4">
+            <a href="{{ route('user.show', ['id' => $user->id]) }}" class="flex items-center">
+                <img src="{{ asset('images/websitelogo/logo.png') }}" class="size-20 rounded-full">
+                <h1 class="ml-2">{{ $user->name }}</h1>
+            </a>
+        </div>
+        {{--        Right Container--}}
+        <div class="">
+            <p class="text-gray-600 text-lg">
+                {{$review->text}}
+            </p>
+        </div>
+        @if(Auth::check() && $current_user->hasRole(['Admin', 'Moderator']))
+            <form action="{{ route('reviews.destroy') }}" method="POST" class="text-end">
+                @csrf
+                <input type="hidden" name="game_id" value="{{ $game->id }}"/>
+                <input type="hidden" name="user_id" value="{{ $user->id }}"/>
+                <input type="hidden" name="current_user_id" value="{{ $current_user->id }}"/>
+                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md mb-3 text-nowrap">Delete Review</button>
+            </form>
+        @endif
+        <h1 class="text-end">Rating: {{$review->rating}} ⭐</h1>
+
+    </div>
+                @endif
+            @endforeach
 {{-- Reviews --}}
     @foreach ($reviews as $review)
            @php($user = $users->firstWhere('id', $review->user_id))
+            @if(!$user->hasRole('Critic'))
 {{--BIG container--}}
     <div class="container rounded-3xl shadow-inner mt-4 p-5 pl-8 flex-fill flex flex-col justify-between">
 {{--Left Container--}}
@@ -250,7 +284,7 @@
             </form>
         @endif
         <h1 class="text-end">Rating: {{$review->rating}} ⭐</h1>
-        
+        @endif
     </div>
     @endforeach
 </x-layout>

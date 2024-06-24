@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreignId('game_id')->constrained();
             $table->string('text');
             $table->tinyInteger('rating');
-            $table->boolean('isCritic');
             $table->date('date')->useCurrent();
             $table->timestamps();
         });

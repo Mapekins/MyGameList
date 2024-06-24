@@ -38,7 +38,6 @@ class ReviewController extends Controller
             'user_id' => $request->user_id,
             'text' => $request->text,
             'rating' => $request->rating,
-            'isCritic' => $request->isCritic,
             'date' => now(),
         ]);
         $new_review->save();
@@ -54,6 +53,7 @@ class ReviewController extends Controller
             'user_id' => 'required',
             'text' => 'required',
             'rating' => 'required|integer|min:1|max:10',
+            'date' => now(),
         ]);
         $reviews = Review::all();
         $review = $reviews->where('user_id', $request->user_id)->where('game_id', $request->game_id)->first();
@@ -61,7 +61,6 @@ class ReviewController extends Controller
         $review->user_id = $request->user_id;
         $review->text = $request->text;
         $review->rating = $request->rating;
-        $review->isCritic = $request->isCritic;
         $review->save();
         return redirect()->route('game.show', ['id' => $review->game_id]);
     }

@@ -14,12 +14,12 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        
+
         //Creating filler users
 
         for($i = 0;$i < 50;$i++){
             $new_user = User::factory()->create();
-            $new_user->assignRole('Verified user');
+            $new_user->assignRole(['Admin','Critic','Moderator','Verified user','Editor'][rand(0,4)]);
         };
 
         // Creating special users
