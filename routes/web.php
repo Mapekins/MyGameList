@@ -5,12 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\GameListController;
-
-//Route::get('/', function () {
-//    $games = app(GameController::class)->index();
-//
-//    return view('main', ['games' => $games]);
-//})->name('main');
+use App\Http\Controllers\RoleController;
 
 Route::get('/', [GameController::class, 'index'])->name('main');
 
@@ -37,6 +32,9 @@ Route::post('/game-list/update', [GameListController::class, 'update'])->name('g
 Route::post('/game-list/destroy', [GameListController::class, 'destroy'])->name('game-list.destroy');
 
 Route::get('/user/{id}/gamelist', [GameListController::class, 'index'])->name('game-list.index');
+
+Route::post('/role/change', [RoleController::class, 'change'])->name('role.change');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
