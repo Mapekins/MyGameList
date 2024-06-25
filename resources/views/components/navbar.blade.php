@@ -8,6 +8,15 @@
                 <button class="rounded-full text-lg text-white bg-blue-400 p-1 px-3 border-2 border-white transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600">
                     {{__('users')}}</button>
             </a>
+            <a href="locale/en">
+                <button class="rounded-full text-lg text-white bg-blue-400 p-1 px-3 border-2 border-white transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600"><span class="fi fi-gb"></span></button>
+            </a>
+            <a href="locale/lv">
+                <button class="rounded-full text-lg text-white bg-blue-400 p-1 px-3 border-2 border-white transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600"><span class="fi fi-lv"></span></button>
+            </a>
+            <a href="locale/ru">
+                <button class="rounded-full text-lg text-white bg-blue-400 p-1 px-3 border-2 border-white transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600"><span class="fi fi-ru"></span></button>
+            </a>
         </div>
         <div class="absolute left-1/2 transform -translate-x-1/2">
             <a href="{{ route('main') }}" class="flex items-center logo-link">
@@ -18,15 +27,10 @@
         <div class="flex items-center space-x-4 ml-auto">
             <form action="{{ route('game.search') }}" method="GET" class="flex items-center space-x-2">
                 <input class="rounded-full p-1 px-2" type="text" name="search" placeholder="{{__('game_search')}}" required>
-                <button class="rounded-full text-lg text-white bg-blue-400 p-1 px-3 border-2 border-white transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600" type="submit">Search</button>
+                <button class="rounded-full text-lg text-white bg-blue-400 p-1 px-3 border-2 border-white transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600" type="submit">
+                    {{__('search')}}</button>
             </form>
-            <div>
-                <select class="text-lg text-black rounded-full pl-3 p-1 pr-9">
-                    <option value="en" class="text-lg text-black">English</option>
-                    <option value="lv" class="text-lg text-black">Latviešu</option>
-                    <option value="ru" class="text-lg text-black">Русский</option>
-                </select>
-            </div>
+
             <nav>
                 <ul class="flex items-center space-x-2">
                     @guest

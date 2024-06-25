@@ -143,7 +143,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="favorite" class="block text-lg font-semibold mb-2 w-[164px]">{{_('add_favorite')}} :</label>
+                    <label for="favorite" class="block text-lg font-semibold mb-2 w-[164px]">{{__('add_favorite')}} :</label>
                     <input type="checkbox" id="favorite" name="favorite" value="1" class="border rounded-md px-3 py-1 mb-2">
                 </div>
 
@@ -180,8 +180,8 @@
                         <input type="file" name="game_logo" id="game_logo" class="border rounded w-full py-2 px-3">
                         <label for="title" class="text-gray-700 text-sm font-bold mt-2">{{__('title')}} : </label>
                         <input type="text" id="title" name="title"  placeholder="{{__('title')}}" value="{{ $game->name }}" required/>
-                        <label for="descr" class="text-gray-700 text-sm font-bold mt-2">{{__('description')}} : </label>
-                        <input type="text" id="descr" name="descr"  placeholder="{{__('description')}}" value="{{ $game->description }}" required/>
+                        <label for="descr" class="text-gray-700 text-sm font-bold mt-2">{{__('game_description')}} : </label>
+                        <input type="text" id="descr" name="descr"  placeholder="{{__('game_description')}}" value="{{ $game->description }}" required/>
                         <label for="genre" class="text-gray-700 text-sm font-bold mt-2">{{__('genre')}} : </label>
                         <input type="text" id="genre" name="genre" placeholder="{{__('genre')}}" value="{{ $game->genre }}" required/>
                         <label for="reldate" class="text-gray-700 text-sm font-bold mt-2">{{__('game_release')}} : </label>
@@ -220,7 +220,7 @@
             <p>{{ $game->developer }}</p>
         </div>
         <div>
-            <label class="block text-lg font-semibold mb-2">{{__('description')}} :</label>
+            <label class="block text-lg font-semibold mb-2">{{__('game_description')}} :</label>
             <p>{{ $game->description }}</p>
         </div>
     </div>
@@ -283,6 +283,7 @@
                         {{__('delete_review')}}</button>
                 </form>
             </div>
+            @endif
             @endauth
             </div>
             {{--Critic Reviews--}}

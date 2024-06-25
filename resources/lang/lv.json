@@ -69,5 +69,20 @@
     "change_role": "Change Role",
     "user_search": "Search for a user...",
     "yyyy-mm-dd": "yyyy-mm-dd",
-    "game_search": "Search for a game..."
+    "game_search": "Search for a game...",
+    "confirm_password_auth": "This is a secure area of the application. Please confirm your password before continuing.",
+    "Confirm": "Confirm",
+    "Email Password Reset Link": "Email Password Reset Link",
+    "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.": "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.",
+    "Password": "Password",
+    "Remember me": "Remember me",
+    "Forgot your password?": "Forgot your password?",
+    "Username": "Username",
+    "Confirm Password": "Confirm Password",
+    "Already registered?": "Already registered?",
+    "Reset Password": "Reset Password",
+    "Resend Verification Email": "Resend Verification Email",
+    "A new verification link has been sent to the email address you provided during registration.": "A new verification link has been sent to the email address you provided during registration.",
+    "Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\\'t receive the email, we will gladly send you another.": "Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\\'t receive the email, we will gladly send you another."
+
 }

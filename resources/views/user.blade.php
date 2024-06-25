@@ -75,7 +75,7 @@
             <div class="flex">
             <a href="{{ route('game-list.index', ['id' => $user->id]) }}">
                 <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2 transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600">
-                    {{__('gamelist')}}
+                    {{__('game_list')}}
                 </button>
                 </a>
                 <div id="ex1" class="modal">

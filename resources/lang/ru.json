@@ -69,5 +69,21 @@
     "change_role": "Изменить роль",
     "user_search": "Поиск пользователя...",
     "yyyy-mm-dd": "гггг-мм-дд",
-    "game_search": "Поиск игры..."
+    "game_search": "Поиск игры...",
+
+    "confirm_password_auth": "Это защищенная часть приложения. Пожалуйста, подтвердите свой пароль, прежде чем продолжить.",
+    "Confirm": "Подтвердить",
+    "Email Password Reset Link": "Ссылка для сброса пароля по электронной почте",
+    "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.": "Забыли пароль? Не беда. Просто сообщите нам свой адрес электронной почты, и мы пришлем вам ссылку для сброса пароля, по которой вы сможете выбрать новый.",
+    "Password": "Пароль",
+    "Remember me": "Запомнить меня",
+    "Forgot your password?": "Забыли пароль?",
+    "Username": "Имя пользователя",
+    "Confirm Password": "Подтвердите пароль",
+    "Already registered?": "Уже зарегистрированы?",
+    "Reset Password": "Сброс пароля",
+    "Resend Verification Email": "Повторная отправка проверочного письма",
+    "A new verification link has been sent to the email address you provided during registration.": "На адрес электронной почты, указанный при регистрации, была отправлена новая ссылка для проверки.",
+    "Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\\'t receive the email, we will gladly send you another.": "Спасибо за регистрацию! Прежде чем приступить к работе, не могли бы вы подтвердить свой адрес электронной почты, перейдя по ссылке, которую мы только что отправили вам по электронной почте? Если вы не получили это письмо, мы с радостью вышлем вам другое."
+
 }
