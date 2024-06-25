@@ -9,7 +9,7 @@ class Game extends Model
 {
     use HasFactory;
     protected $table = 'games';
-
+    protected $fillable = ['name', 'description', 'genre', 'release_date', 'developer', 'image'];
     public function gamelists()
     {
         return $this->hasMany(GameList::class);

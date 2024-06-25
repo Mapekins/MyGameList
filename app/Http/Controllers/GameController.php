@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\GameList;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class GameController extends Controller
 {
@@ -124,6 +125,93 @@ class GameController extends Controller
         $usersforgrade = $users->merge($glistUsers);
 
         return view('game', compact('game', 'reviews', 'users', 'userReview', 'userGameListEntry', 'usersforgrade', 'gameListEntries'));
+    }
+
+    public function delete(Request $request)
+    {
+        $request->validate([
+            'game_id' => 'required|exists:games,id',
+        ]);
+    
+        // Retrieve the game list entry
+        $game = Game::findOrFail($request->game_id);
+    
+        // Ensure the authenticated user is authorized to delete this game list entry
+        if (!Auth::user()->hasRole('Admin') && !Auth::user()->hasRole('Editor')) {
+            abort(403, 'Unauthorized.');
+        }
+    
+        // Delete the game list entry
+        $game->delete();
+    
+        return redirect()->route('main');
+    }
+
+    public function create(Request $request)
+    {
+        $request->validate([
+            'game_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:3048',
+            'title' => 'required|string',
+            'descr' => 'required|string',
+            'genre' => 'required|string',
+            'reldate' => 'required|date',
+            'dev' => 'required|string',
+        ]);
+
+        $path = $request->file('game_logo')->store('game_logos', 'public');
+
+        $request->game_logo = $path;
+
+
+            // Create a new record
+            Game::create([
+                'name' => $request->title,
+                'description' => $request->descr,
+                'genre' => $request->genre,
+                'release_date' => $request->reldate,
+                'developer' => $request->dev,
+                'image' => $request->game_logo
+            ]);
+        
+        return redirect()->route('main');
+    }
+
+    public function edit(Request $request)
+    {
+        $request->validate([
+            'game_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:3048',
+            'title' => 'required|string',
+            'descr' => 'required|string',
+            'genre' => 'required|string',
+            'reldate' => 'required|date',
+            'dev' => 'required|string',
+        ]);
+
+
+        $game = Game::findOrFail($request->game_id);
+
+        if ($request->hasFile('game_logo')) {
+            if ($request->game_logo) {
+                Storage::delete($game->image);
+            }
+            $path = $request->file('game_logo')->store('game_logos', 'public');
+
+            $game->image = $path;
+            $game->save();
+
+        }
+
+
+            // Create a new record
+            $game->update([
+                'name' => $request->title,
+                'description' => $request->descr,
+                'genre' => $request->genre,
+                'release_date' => $request->reldate,
+                'developer' => $request->dev,
+            ]);
+        
+            return redirect()->route('game.show', ['id' => $request->game_id])->with('success', 'Game entry updated successfully.');
     }
 
 }

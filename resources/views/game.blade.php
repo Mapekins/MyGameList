@@ -30,12 +30,27 @@
     <div class="container relative rounded-3xl shadow-inner p-5 pl-8 flex">
         <!-- Left Part -->
         <div class="w-1/4 pr-8 leftgame">
-            <img src="{{ asset('images/gamelogos/' . $game->image) }}" alt="{{ $game->name }}" class="rounded-lg mb-5">
+           @php
+                $logoPath = public_path('images/gamelogos/' . $game->image);
+                $fallbackPath = asset('storage/' . $game->image);
+            @endphp
+
+            @if (file_exists($logoPath))
+                <img src="{{ asset('images/gamelogos/' . $game->image) }}" alt="{{ $game->name }}" class="rounded-lg mb-5">
+            @else
+                <img src="{{ $fallbackPath }}" alt="{{ $game->name }}" class="rounded-lg mb-5">
+            @endif
             <div class="mb-3">
                 <label class="block text-lg font-semibold mb-2">Rating:</label>
                 <div class="flex items-end">
-                    <p class="text-4xl text-blue-400">{{$averageRating}}⭐</p>
-                    <p class="text-xl"> ({{$totalCount}} users)</p>
+                @if ($averageRating !== 'Not yet rated! :(')
+                  <p class="text-4xl text-blue-400">{{$averageRating}}⭐</p>
+                  <p class="text-xl"> ({{$totalCount}} users)</p>
+                @else
+                   <p>{{$averageRating}}</p>
+                   
+                @endif
+                    
                 </div>
 
 
@@ -84,7 +99,7 @@
 
                 <div class="flex">
                 <!-- Update button -->
-                <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-md mr-2 transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600">Update</button>
+                <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-md mr-2 transition-all duration-150 ease-in-out hover:scale-110 hover:bg-green-600">Update</button>
 
                 <!-- Delete form -->
 
@@ -93,7 +108,7 @@
                     @csrf
                     <!-- Hidden input to store game_list_id -->
                     <input type="hidden" name="game_list_id" value="{{ $userGameListEntry->id }}">
-                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600">Delete</button>
+                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md transition-all duration-150 ease-in-out hover:scale-110 hover:bg-red-600">Delete</button>
                 </form>
             </div>
         @else
@@ -145,7 +160,47 @@
     </div>
 
     <!-- Right Part -->
-    <div class="w-3/4">
+    <div class="w-3/4 relative">
+
+    @if(Auth::check() && $current_user->hasRole(['Admin', 'Editor']))
+        <div class="absolute top-0 right-0 flex space-x-2 mt-2 mr-2">
+
+
+
+        
+            <div id="ex4" class="modal">
+                        <h2 class="text-lg font-bold">Edit A Game</h2>
+                            <form action="{{ route('game.edit') }}" method="POST" enctype="multipart/form-data" class="flex flex-col">
+                                @csrf
+                                <input type="hidden" name="game_id" value="{{ $game->id }}">
+                                <label for="game_logo" class="text-gray-700 text-sm font-bold mb-2">Game Logo: </label>
+                                <input type="file" name="game_logo" id="game_logo" class="border rounded w-full py-2 px-3">
+                                <label for="title" class="text-gray-700 text-sm font-bold mt-2">Title: </label>
+                                <input type="text" id="title" name="title"  placeholder="Title" value="{{ $game->name }}" required/>
+                                <label for="descr" class="text-gray-700 text-sm font-bold mt-2">Description: </label>
+                                <input type="text" id="descr" name="descr"  placeholder="Description" value="{{ $game->description }}" required/>
+                                <label for="genre" class="text-gray-700 text-sm font-bold mt-2">Genre: </label>
+                                <input type="text" id="genre" name="genre" placeholder="Genre" value="{{ $game->genre }}" required/>
+                                <label for="reldate" class="text-gray-700 text-sm font-bold mt-2">Release Date: </label>
+                                <input type="text" id="reldate" name="reldate" placeholder="(yyyy-mm-dd)" value="{{ $game->release_date }}" required/>
+                                <label for="dev" class="text-gray-700 text-sm font-bold mt-2">Developer: </label>
+                                <input type="text" id="dev" name="dev" placeholder="Developer" value="{{ $game->developer }}" required/>
+                                <button type="submit" class="bg-blue-500 text-white rounded-md text-nowrap flex size-fit m-2 ml-0 px-2 py-2 transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600">Edit a Game</button>
+                            </form>
+                    </div>
+                        <a href="#ex4" rel="modal:open"><button class="bg-green-500 text-white px-4 py-2 rounded-md mr-2 transition-all duration-150 ease-in-out hover:scale-110 hover:bg-green-600">
+                        Edit Game
+                    </button></a>
+
+            
+            <form action="{{ route('game.delete') }}" method="POST">
+                @csrf
+                <input type="hidden" name="game_id" value="{{ $game->id }}">
+            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md transition-all duration-150 ease-in-out hover:scale-110 hover:bg-red-900">Delete Game</button>
+            </form>
+        </div>
+        @endif
+
         <h2 class="font-bold text-3xl mb-3">{{ $game->name }}</h2>
         <div class="mb-3">
             <label class="block text-lg font-semibold mb-2">Release Date:</label>

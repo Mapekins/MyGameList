@@ -46,7 +46,16 @@
                     @foreach ($gameList as $game)
                         <div class="game-item">
                             <a href="{{ route('game.show', $game->game_id) }}">
-                                <img src="{{ asset('images/gamelogos/' . $game->game->image) }}" alt="{{ $game->game->name }}" class="shadow-lg border border-gray-400 transition-all duration-150 ease-in-out hover:scale-95">
+                            @php
+                            $logoPath = public_path('images/gamelogos/' . $game->game->image);
+                            $fallbackPath = asset('storage/' . $game->game->image);
+                        @endphp
+
+                        @if (file_exists($logoPath))
+                            <img src="{{ asset('images/gamelogos/' . $game->game->image) }}" alt="{{ $game->game->name }}" class="shadow-lg border border-gray-400 transition-all duration-150 ease-in-out hover:scale-95">
+                        @else
+                            <img src="{{ $fallbackPath }}" alt="{{ $game->game->name }}" class="shadow-lg border border-gray-400 transition-all duration-150 ease-in-out hover:scale-95">
+                        @endif
                                 <h3>{{ $game->game->name }}</h3>
                                 <h3>
 

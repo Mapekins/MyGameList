@@ -38,6 +38,7 @@ class ProfileController extends Controller
     {
         $request->validate([
             'name' => 'nullable',
+            'email' => 'nullable',
             'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'current_password' => 'required',
             'new_password' => ['nullable', 'confirmed', Password::defaults()],
@@ -60,6 +61,10 @@ class ProfileController extends Controller
 
         if($request->name !== Null){
             $user->name = $request->name;
+        }
+
+        if($request->email !== Null){
+            $user->email = $request->email;
         }
 
         if ($request->new_password !== Null) {

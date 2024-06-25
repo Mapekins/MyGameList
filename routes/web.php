@@ -12,6 +12,9 @@ Route::get('/', [GameController::class, 'index'])->name('main');
 Route::get('/search', [GameController::class, 'search'])->name('game.search');
 
 Route::get('/game/{id}', [GameController::class, 'show'])->name('game.show');
+Route::post('/game/delete', [GameController::class, 'delete'])->name('game.delete');
+Route::post('/game/edit', [GameController::class, 'edit'])->name('game.edit');
+Route::post('/game/create', [GameController::class, 'create'])->name('game.create');
 
 Route::get('/users', [ProfileController::class, 'index'])->name('user.index');
 
