@@ -28,7 +28,7 @@ class GameListController extends Controller
         }
 
         $gameList = $gameListQuery->get();
-        $message = $gameList->isEmpty() ? 'No games found matching your filters.' : '';
+        $message = $gameList->isEmpty() ? __('No games found matching your filters.') : '';
         return view('gamelist', compact('gameList', 'message', 'user'));
     }
 
@@ -61,8 +61,8 @@ class GameListController extends Controller
                 'score' => $request->has('score') ? $request->score : null,
                 'favorite' => $request->has('favorite'),
             ]);
-        
-            session()->flash('success', 'Game successfully added to your list!');
+
+            session()->flash('success', __('game_loaded_successfully'));
         return redirect()->route('game.show', ['id' => $request->game_id]);
     }
 
@@ -84,23 +84,23 @@ class GameListController extends Controller
             'status' => 'required|integer',
             'favorite' => 'boolean'
         ]);
-    
+
         // Retrieve the game list entry
         $gameList = GameList::findOrFail($request->game_list_id);
-    
+
         // Ensure the authenticated user is authorized to update this game list entry
         if ($gameList->user_id != Auth::id()) {
             abort(403); // Unauthorized
         }
-    
+
         // Update the game list entry
         $gameList->update([
             'status' => $request->status,
             'score' => $request->score,
             'favorite' => $request->has('favorite'),
         ]);
-    
-        return redirect()->route('game.show', ['id' => $gameList->game_id])->with('success', 'Game list entry updated successfully.');
+
+        return redirect()->route('game.show', ['id' => $gameList->game_id])->with('success', 'game_list_updated');
     }
 
     /**
@@ -111,18 +111,18 @@ class GameListController extends Controller
         $request->validate([
             'game_list_id' => 'required|exists:game_lists,id',
         ]);
-    
+
         // Retrieve the game list entry
         $gameList = GameList::findOrFail($request->game_list_id);
-    
+
         // Ensure the authenticated user is authorized to delete this game list entry
         if ($gameList->user_id != Auth::id()) {
             abort(403); // Unauthorized
         }
-    
+
         // Delete the game list entry
         $gameList->delete();
-    
-        return redirect()->route('game.show', ['id' => $gameList->game_id])->with('success', 'Game list entry deleted successfully.');
+
+        return redirect()->route('game.show', ['id' => $gameList->game_id])->with('success', __('game_list_deleted'));
     }
 }

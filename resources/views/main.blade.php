@@ -53,7 +53,7 @@
 
                 <div class="relative">
                     <h1 class="text-4xl font-bold">{{$games->firstWhere('id',$averageRatings[0]['game_id'])->name}}</h1>
-                    <p>Rating: {{$averageRatings[0]['average_rating']}}⭐</p>
+                    <p>{{__('rating')}}: {{$averageRatings[0]['average_rating']}}⭐</p>
                     @php
                         $hasCriticReview = false;
                     @endphp

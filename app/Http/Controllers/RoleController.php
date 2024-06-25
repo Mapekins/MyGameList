@@ -25,10 +25,10 @@ class RoleController extends Controller
                 // Sync roles for the user based on selected role_name
                 $user->syncRoles([$request->role_name]);
             } else {
-                return redirect()->back()->with('error', 'User not found');
+                return redirect()->back()->with('error', __('user_not_found'));
             }
         } else {
-            return redirect()->back()->with('error', 'You do not have permission to change roles');
+            return redirect()->back()->with('error', __('dont_have_permission_role_change'));
         }
         return redirect()->route('user.show', ['id' => $user->id]);
     }

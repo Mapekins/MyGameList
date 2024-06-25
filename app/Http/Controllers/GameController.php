@@ -200,7 +200,7 @@ class GameController extends Controller
                 if ($game->image) {
                     Storage::delete($game->image);
                 }
-                
+
             }
             $path = $request->file('game_logo')->store('game_logos', 'public');
 
@@ -219,7 +219,7 @@ class GameController extends Controller
                 'developer' => $request->dev,
             ]);
 
-            return redirect()->route('game.show', ['id' => $request->game_id])->with('success', 'Game entry updated successfully.');
+            return redirect()->route('game.show', ['id' => $request->game_id])->with('success', __('game_update_suc'));
     }
 
 }

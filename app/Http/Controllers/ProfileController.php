@@ -47,7 +47,7 @@ class ProfileController extends Controller
         $user = Auth::user();
 
         if (!Hash::check($request->current_password, $user->password)) {
-            return redirect()->back()->withErrors(['current_password' => 'Current password is incorrect']);
+            return redirect()->back()->withErrors(['current_password' => __('cur_pass_incorrect')]);
         }
 
         if ($request->hasFile('profile_picture')) {
@@ -73,7 +73,7 @@ class ProfileController extends Controller
 
         $user->save();
 
-        return redirect()->back()->with('success', 'Profile updated successfully');
+        return redirect()->back()->with('success', __('prof_upd_suc'));
     }
 
     /**
@@ -119,7 +119,7 @@ class ProfileController extends Controller
             ->get();
 
         if ($users->isEmpty()) {
-            $message = 'No users found matching your search.';
+            $message = __('not_found_users');
         } else {
             $message = null;
         }

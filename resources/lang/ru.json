@@ -8,7 +8,7 @@
     "main_if_no_critics_reviews": "Эта игра лучшая, так как была высоко оценена пользователями.",
     "all_games": "Все игры",
     "games": "Игры",
-    "users": "Пользователи",
+    "users": "Пользователей",
     "login": "Вход",
     "register": "Зарегистрироваться",
     "game_list": "Игровой список",
@@ -30,7 +30,7 @@
     "add": "Добавить",
     "edit_game": "Отредактировать игру",
     "game_logo": "Логотип игры",
-    "title": "Заголовок",
+    "title": "Название",
     "game_description": "Описание",
     "genre": "Жанр",
     "game_release": "Дата выхода",
@@ -43,14 +43,14 @@
     "edit_review": "Отредактировать обзор",
     "delete_review": "Удалить обзор",
     "viewing": "Просмотр",
-    "your": "Ваша",
+    "your": "Ваш",
     "favorites": "Фавориты",
     "users_score": "Оценка пользователей",
     "result": "Результат",
     "search": "Поиск",
     "create_game": "Создать игру",
     "add_game": "Добавить игру",
-    "user_id": "Айди пользователи",
+    "user_id": "Айди пользователя",
     "email": "Электронная почта",
     "role": "Роль",
     "s_reviews": " Отзыв этого пользователя",
@@ -84,6 +84,19 @@
     "Reset Password": "Сброс пароля",
     "Resend Verification Email": "Повторная отправка проверочного письма",
     "A new verification link has been sent to the email address you provided during registration.": "На адрес электронной почты, указанный при регистрации, была отправлена новая ссылка для проверки.",
-    "Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\\'t receive the email, we will gladly send you another.": "Спасибо за регистрацию! Прежде чем приступить к работе, не могли бы вы подтвердить свой адрес электронной почты, перейдя по ссылке, которую мы только что отправили вам по электронной почте? Если вы не получили это письмо, мы с радостью вышлем вам другое."
+    "Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\\'t receive the email, we will gladly send you another.": "Спасибо за регистрацию! Прежде чем приступить к работе, не могли бы вы подтвердить свой адрес электронной почты, перейдя по ссылке, которую мы только что отправили вам по электронной почте? Если вы не получили это письмо, мы с радостью вышлем вам другое.",
 
+    "no_games_found": "Не найдено игр, соответствующих вашим фильтрам.",
+    "game_loaded_successfully": "Игра успешно добавлена в ваш список!",
+    "game_list_updated": "Запись в списке игр обновлена успешно.",
+    "game_list_deleted": "Запись в списке игр успешно удалена.",
+
+    "cur_pass_incorrect": "Текущий пароль неверен",
+    "prof_upd_suc": "Профиль успешно обновлен",
+    "not_found_users": "Не найдено пользователей, соответствующих вашему запросу.",
+
+    "game_update_suc": "Запись игры успешно обновлена.",
+
+    "user_not_found": "Пользователь не найден",
+    "dont_have_permission_role_change": "У вас нет прав на изменение ролей"
 }
