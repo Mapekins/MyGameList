@@ -20,9 +20,9 @@
             @endphp
 
             @if (file_exists($logoPath))
-                <img src="{{ asset('images/gamelogos/' . $games->firstWhere('id', $gameId)->image) }}" alt="{{ $games->firstWhere('id', $gameId)->image }}" class="shadow-lg border border-gray-400 mb-2 w-auto h-auto w-[200px] h-[275px] transition-all duration-150 ease-in-out hover:scale-95">
+                <img src="{{ asset('images/gamelogos/' . $games->firstWhere('id', $gameId)->image) }}" alt="{{ $games->firstWhere('id', $gameId)->image }}" class="shadow-lg border border-gray-400 mb-2 w-[200px] h-[275px] transition-all duration-150 ease-in-out hover:scale-95">
             @else
-                <img src="{{ $fallbackPath }}" alt="{{ $games->firstWhere('id', $gameId)->image }}" class="shadow-lg border border-gray-400 mb-2 w-auto h-auto w-[200px] h-[275px] transition-all duration-150 ease-in-out hover:scale-95">
+                <img src="{{ $fallbackPath }}" alt="{{ $games->firstWhere('id', $gameId)->image }}" class="shadow-lg border border-gray-400 mb-2 w-[200px] h-[275px] transition-all duration-150 ease-in-out hover:scale-95">
             @endif
                         <div class="text-wrap size-fit">
                             <h3>{{$gameName}}</h3>
@@ -46,9 +46,9 @@
             @endphp
 
             @if (file_exists($logoPath))
-                <img src="{{ asset('images/gamelogos/' . $games->firstWhere('id',$averageRatings[0]['game_id'])->image) }}" alt="{{ $games->firstWhere('id',$averageRatings[0]['game_id'])->image }}" class="shadow-lg border border-gray-400 w-auto h-auto w-[300px] h-[375px] transition-all duration-150 ease-in-out hover:scale-95">
+                <img src="{{ asset('images/gamelogos/' . $games->firstWhere('id',$averageRatings[0]['game_id'])->image) }}" alt="{{ $games->firstWhere('id',$averageRatings[0]['game_id'])->image }}" class="shadow-lg border border-gray-400 w-[300px] h-[375px] transition-all duration-150 ease-in-out hover:scale-95">
             @else
-                <img src="{{ $fallbackPath }}" alt="{{ $games->firstWhere('id',$averageRatings[0]['game_id'])->image }}" class="shadow-lg border border-gray-400 w-auto h-auto w-[300px] h-[375px] transition-all duration-150 ease-in-out hover:scale-95">
+                <img src="{{ $fallbackPath }}" alt="{{ $games->firstWhere('id',$averageRatings[0]['game_id'])->image }}" class="shadow-lg border border-gray-400 w-[300px] h-[375px] transition-all duration-150 ease-in-out hover:scale-95">
             @endif
 
                 <div class="relative">
