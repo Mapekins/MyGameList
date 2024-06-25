@@ -1,7 +1,7 @@
 ﻿<x-layout>
     <div class="container rounded-3xl shadow-inner p-5 pl-8">
 		<section class="all-games">
-		<h2 class="font-bold pb-5 text-xl">Result</h2>
+		<h2 class="font-bold pb-5 text-xl">{{__('result')}}</h2>
 		@if ($message)
                 <p class="text-red-500">{{ $message }}</p>
             @else

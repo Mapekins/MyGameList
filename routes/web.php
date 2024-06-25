@@ -6,8 +6,12 @@ use App\Http\Controllers\GameController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\GameListController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\LocaleController;
+
 
 Route::get('/', [GameController::class, 'index'])->name('main');
+
+Route::get('/locale/{lang}',[LocaleController::class,'setLocale']);
 
 Route::get('/search', [GameController::class, 'search'])->name('game.search');
 

@@ -1,9 +1,9 @@
 ﻿<x-layout>
 <div class="container rounded-3xl shadow-inner p-5 pl-8">
-        <p class="text-3xl text-black font-bold">Welcome to the MyGameList website!</p>
-        <p class="italic mt-2 text-gray-400">Here you can add games to your list and manage them. For free.</p>
+        <p class="text-3xl text-black font-bold">{{__('welcome')}}</p>
+        <p class="italic mt-2 text-gray-400">{{__('main_description')}}</p>
         <section class="top-games">
-            <h2 class="font-bold text-xl">Top 2-6 Games</h2>
+            <h2 class="font-bold text-xl">{{__('top_2-6')}}</h2>
             <ul>
                 @for($i = 1;$i < 6; $i++)
                     @php
@@ -13,7 +13,7 @@
                     @endphp
                     <li class="w-[230px] h-[400px]">
                         <a href="{{ route('game.show', $gameId) }}" class="h-[350px]">
-                        
+
             @php
                 $logoPath = public_path('images/gamelogos/' . $games->firstWhere('id', $gameId)->image);
                 $fallbackPath = asset('storage/' . $games->firstWhere('id', $gameId)->image);
@@ -26,7 +26,7 @@
             @endif
                         <div class="text-wrap size-fit">
                             <h3>{{$gameName}}</h3>
-                            <p>Rating: {{$averageRating}}⭐</p>
+                            <p>{{__('rating')}} : {{$averageRating}}⭐</p>
                         </div>
                         </a>
                     </li>
@@ -36,7 +36,7 @@
 </div>
     <div class="container rounded-3xl shadow-inner p-5 pl-8 mt-5 mb-5">
         <section class="best-of-the-best">
-            <h2 class="font-bold text-xl">Top 1 Game (Best of the Best)</h2>
+            <h2 class="font-bold text-xl">{{__('top_1')}}</h2>
             <div class="best-game">
                 <a href="{{ route('game.show', $averageRatings[0]['game_id']) }}">
 
@@ -71,7 +71,7 @@
                     @endforeach
 
                     @if ($hasCriticReview)
-                        <p>Here are reviews from our Critics:</p>
+                        <p>{{__('main_critics_reviews')}} :</p>
                         @foreach ($reviews->where('game_id', $averageRatings[0]['game_id']) as $review)
                             @php
                                 $user = $users->firstWhere('id', $review->user_id);
@@ -98,7 +98,7 @@
                             @endif
                         @endforeach
                     @else
-                        <p>This game is the best because it has high ratings and reviews from general users.</p>
+                        <p>{{__('main_if_no_critics_reviews')}}</p>
                     @endif
                 </div>
                 </a>
@@ -107,7 +107,7 @@
     </div>
     <div class="container rounded-3xl shadow-inner p-5 pl-8">
      <section class="all-games">
-        <h2 class="font-bold pb-5 text-xl">All Games</h2>
+        <h2 class="font-bold pb-5 text-xl">{{__('all_games')}}</h2>
         <div class="game-gallery">
             @foreach ($games as $game)
                 <div class="game-item">

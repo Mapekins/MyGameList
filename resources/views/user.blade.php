@@ -29,30 +29,30 @@
 
             @if(Auth::check() && $current_user->hasRole(['Admin', 'Editor']))
             <div id="ex3" class="modal">
-                        <h2 class="text-lg font-bold">Create A Game</h2>
+                        <h2 class="text-lg font-bold">{{__('create_game')}}</h2>
                             <form action="{{ route('game.create') }}" method="POST" enctype="multipart/form-data" class="flex flex-col">
                                 @csrf
-                                <label for="game_logo" class="text-gray-700 text-sm font-bold mb-2">Game Logo: </label>
+                                <label for="game_logo" class="text-gray-700 text-sm font-bold mb-2">{{__('game_logo')}} : </label>
                                 <input type="file" name="game_logo" id="game_logo" class="border rounded w-full py-2 px-3">
-                                <label for="title" class="text-gray-700 text-sm font-bold mt-2">Title: </label>
-                                <input type="text" id="title" name="title"  placeholder="Title" required/>
-                                <label for="descr" class="text-gray-700 text-sm font-bold mt-2">Description: </label>
-                                <input type="text" id="descr" name="descr"  placeholder="Description" required/>
-                                <label for="genre" class="text-gray-700 text-sm font-bold mt-2">Genre: </label>
-                                <input type="text" id="genre" name="genre" placeholder="Genre" required/>
-                                <label for="reldate" class="text-gray-700 text-sm font-bold mt-2">Release Date: </label>
-                                <input type="text" id="reldate" name="reldate" placeholder="(yyyy-mm-dd)" required/>
-                                <label for="dev" class="text-gray-700 text-sm font-bold mt-2">Developer: </label>
-                                <input type="text" id="dev" name="dev" placeholder="Developer" required/>
-                                <button type="submit" class="bg-blue-500 text-white rounded-md text-nowrap flex size-fit m-2 ml-0 px-2 py-2 transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600">Create a Game</button>
+                                <label for="title" class="text-gray-700 text-sm font-bold mt-2">{{__('title')}} : </label>
+                                <input type="text" id="title" name="title"  placeholder="{{__('title')}}" required/>
+                                <label for="descr" class="text-gray-700 text-sm font-bold mt-2">{{__('description')}} : </label>
+                                <input type="text" id="descr" name="descr"  placeholder="{{__('description')}}" required/>
+                                <label for="genre" class="text-gray-700 text-sm font-bold mt-2">{{__('genre')}}: </label>
+                                <input type="text" id="genre" name="genre" placeholder="{{__('genre')}}" required/>
+                                <label for="reldate" class="text-gray-700 text-sm font-bold mt-2">{{__('game_release')}} : </label>
+                                <input type="text" id="reldate" name="reldate" placeholder="{{__('yyyy-mm-dd')}}" required/>
+                                <label for="dev" class="text-gray-700 text-sm font-bold mt-2">{{__('developer')}} : </label>
+                                <input type="text" id="dev" name="dev" placeholder="{{__('developer')}}" required/>
+                                <button type="submit" class="bg-blue-500 text-white rounded-md text-nowrap flex size-fit m-2 ml-0 px-2 py-2 transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600">{{__('create_game')}}</button>
                             </form>
                     </div>
                         <a href="#ex3" rel="modal:open"><button class="absolute bottom-0 left-0 bg-blue-500 text-white font-bold py-2 px-4 rounded transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600">
-                        Add Game
+                            {{__('add_game')}}
                     </button></a>
 
             @endif
-            
+
         </div>
         {{-- Middle Column: Username, UserID, Email, Role --}}
         <div class="flex-1">
@@ -60,13 +60,13 @@
             <h1 class="text-3xl font-bold mb-3">{{ $user->name }}</h1>
 
             {{-- User ID --}}
-            <p class="text-gray-600 mb-2 mt-2">User ID: {{ $user->id }}</p>
+            <p class="text-gray-600 mb-2 mt-2">{{__('user_id')}} : {{ $user->id }}</p>
 
             {{-- Email --}}
-            <p class="text-gray-600 mb-2">Email: {{ $user->email }}</p>
+            <p class="text-gray-600 mb-2">{{__('email')}} : {{ $user->email }}</p>
 
             {{-- Role --}}
-            <p class="text-gray-600 mb-4">Role: {{$user->getRoleNames()[0]}}</p>
+            <p class="text-gray-600 mb-4">{{__('role')}} : {{$user->getRoleNames()[0]}}</p>
         </div>
 
         {{-- Right Column: Navigation Buttons --}}
@@ -75,11 +75,11 @@
             <div class="flex">
             <a href="{{ route('game-list.index', ['id' => $user->id]) }}">
                 <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2 transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600">
-                    Gamelist
+                    {{__('gamelist')}}
                 </button>
                 </a>
                 <div id="ex1" class="modal">
-                    <h2 class="text-lg font-bold">{{$user->name}}'s reviews  </h2>
+                    <h2 class="text-lg font-bold">{{$user->name}}  {{__('s_reviews')}}  </h2>
                     @foreach($reviews as $review)
                         <div class="size-fit m-2 p-2">
                             @php($game = $games->firstWhere('id', $review->game_id))
@@ -88,33 +88,35 @@
                         </div>
                     @endforeach
                 </div>
-                <a href="#ex1" rel="modal:open"><button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600">Reviews</button></a>
+                <a href="#ex1" rel="modal:open"><button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600">
+                    {{__('reviews')}}</button></a>
             </div>
             {{-- Bottom Right Button: Edit Profile --}}
             @auth
                 @if($user->id == $userid)
                     <div id="ex2" class="modal">
-                        <h2 class="text-lg font-bold">Editing Profile</h2>
+                        <h2 class="text-lg font-bold">{{__('editing_profile')}}</h2>
                             <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data" class="flex flex-col">
                                 @csrf
-                                <label for="profile_picture" class="text-gray-700 text-sm font-bold mb-2">Profile Picture: </label>
+                                <label for="profile_picture" class="text-gray-700 text-sm font-bold mb-2">{{__('profile_picture')}} : </label>
                                 <input type="file" name="profile_picture" id="profile_picture" class="border rounded w-full py-2 px-3">
-                                <label for="name" class="text-gray-700 text-sm font-bold mt-2">New username: </label>
-                                <input type="text" id="name" name="name"  placeholder="(leave it blank, if want to leave it as it is)" value=""/>
-                                <label for="email" class="text-gray-700 text-sm font-bold mt-2">New email: </label>
-                                <input type="text" id="email" name="email"  placeholder="(leave it blank, if want to leave it as it is)" value=""/>
-                                <label for="current_password" class="text-gray-700 text-sm font-bold mt-2">Current password: </label>
-                                <input type="password" id="current_password" name="current_password" placeholder="(required to make the change)" value="" required/>
-                                <label for="new_password" class="text-gray-700 text-sm font-bold mt-2">New password: </label>
-                                <input type="password" id="new_password" name="new_password" placeholder="(leave it blank, if want to leave it as it is)" value=""/>
-                                <label for="new_password_confirmation" class="text-gray-700 text-sm font-bold mt-2">Repeat new password: </label>
-                                <input type="password" id="new_password_confirmation" name="new_password_confirmation"  placeholder="(leave it blank, if want to leave it as it is)" value=""/>
-                                <button type="submit" class="bg-blue-500 text-white rounded-md text-nowrap flex size-fit m-2 ml-0 px-2 py-2 transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600">Save changes</button>
+                                <label for="name" class="text-gray-700 text-sm font-bold mt-2">{{__('new_username')}} : </label>
+                                <input type="text" id="name" name="name"  placeholder="{{__('leave_same')}}" value=""/>
+                                <label for="email" class="text-gray-700 text-sm font-bold mt-2">{{__('new_email')}} : </label>
+                                <input type="text" id="email" name="email"  placeholder="{{__('leave_same')}}" value=""/>
+                                <label for="current_password" class="text-gray-700 text-sm font-bold mt-2">{{__('cur_password')}}: </label>
+                                <input type="password" id="current_password" name="current_password" placeholder="{{__('required_pass')}}" value="" required/>
+                                <label for="new_password" class="text-gray-700 text-sm font-bold mt-2">{{__('new_password')}} : </label>
+                                <input type="password" id="new_password" name="new_password" placeholder="{{__('leave_same')}}" value=""/>
+                                <label for="new_password_confirmation" class="text-gray-700 text-sm font-bold mt-2">{{__('rep_password')}}: </label>
+                                <input type="password" id="new_password_confirmation" name="new_password_confirmation"  placeholder="{{__('leave_same')}}" value=""/>
+                                <button type="submit" class="bg-blue-500 text-white rounded-md text-nowrap flex size-fit m-2 ml-0 px-2 py-2 transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600">
+                                    {{__('save_changes')}}</button>
                             </form>
                     </div>
                     <div class="flex flex-wrap gap-2">
                         <a href="#ex2" rel="modal:open"><button class="bg-blue-500 text-white font-bold py-2 px-4 rounded transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600">
-                        Edit Profile
+                            {{__('edit_profile')}}
                     </button></a>
                 @endif
                 @if(Auth::check() && $current_user->hasRole(['Admin']))
@@ -139,7 +141,8 @@
                                 Admin
                             </option>
                         </select>
-                        <button type="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded text-nowrap transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600">Change Role</button>
+                        <button type="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded text-nowrap transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600">
+                            {{__('change_role')}}</button>
                     </form>
                 @endif
                 </div>

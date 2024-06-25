@@ -10,6 +10,7 @@ use App\Models\GameList;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\App;
 
 class GameController extends Controller
 {
@@ -84,6 +85,7 @@ class GameController extends Controller
             return $b['average_rating'] <=> $a['average_rating'];
         });
 
+
         return view('main', compact('games', 'averageRatings', 'reviews', 'users'));
 
     }
@@ -108,7 +110,7 @@ class GameController extends Controller
 
         return view('searchGames', [
             'games' => $games,
-            'message' => $message
+            'message' => $message,
         ]);
     }
 
@@ -124,6 +126,7 @@ class GameController extends Controller
         $glistUsers = User::whereIn('id', $gameListEntries->pluck('user_id'))->get();
         $usersforgrade = $users->merge($glistUsers);
 
+
         return view('game', compact('game', 'reviews', 'users', 'userReview', 'userGameListEntry', 'usersforgrade', 'gameListEntries'));
     }
 
@@ -132,18 +135,18 @@ class GameController extends Controller
         $request->validate([
             'game_id' => 'required|exists:games,id',
         ]);
-    
+
         // Retrieve the game list entry
         $game = Game::findOrFail($request->game_id);
-    
+
         // Ensure the authenticated user is authorized to delete this game list entry
         if (!Auth::user()->hasRole('Admin') && !Auth::user()->hasRole('Editor')) {
             abort(403, 'Unauthorized.');
         }
-    
+
         // Delete the game list entry
         $game->delete();
-    
+
         return redirect()->route('main');
     }
 
@@ -172,7 +175,7 @@ class GameController extends Controller
                 'developer' => $request->dev,
                 'image' => $request->game_logo
             ]);
-        
+
         return redirect()->route('main');
     }
 
@@ -210,7 +213,7 @@ class GameController extends Controller
                 'release_date' => $request->reldate,
                 'developer' => $request->dev,
             ]);
-        
+
             return redirect()->route('game.show', ['id' => $request->game_id])->with('success', 'Game entry updated successfully.');
     }
 
