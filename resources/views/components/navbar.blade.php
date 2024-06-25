@@ -17,7 +17,7 @@
         </div>
         <div class="flex items-center space-x-4 ml-auto">
             <form action="{{ route('game.search') }}" method="GET" class="flex items-center space-x-2">
-                <input class="rounded-full p-1 px-2" type="text" name="search" placeholder="{{__('Search for a game...')}}" required>
+                <input class="rounded-full p-1 px-2" type="text" name="search" placeholder="{{__('game_search')}}" required>
                 <button class="rounded-full text-lg text-white bg-blue-400 p-1 px-3 border-2 border-white transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600" type="submit">Search</button>
             </form>
             <div>

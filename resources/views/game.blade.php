@@ -24,11 +24,7 @@
         if ($totalCount > 0) {
             $averageRating = number_format($totalSum / $totalCount, 2, ',', '');
         } else {
-    <<<<<<< HEAD
-            $averageRating = __('not_rated');
-    =======
             $averageRating = null;
-    >>>>>>> e1042771b5f928992fd2428298abb97d6951e4fe
         }
     @endphp
     <div class="container relative rounded-3xl shadow-inner p-5 pl-8 flex">
@@ -47,21 +43,11 @@
             <div class="mb-3">
                 <label class="block text-lg font-semibold mb-2">{{__('rating')}}:</label>
                 <div class="flex items-end">
-                    <<<<<<< HEAD
-                    @if ($averageRating !== __('not_rated'))
-                        =======
                         @if ($averageRating !== null)
-                            >>>>>>> e1042771b5f928992fd2428298abb97d6951e4fe
                             <p class="text-4xl text-blue-400">{{$averageRating}}⭐</p>
                             <p class="text-xl"> ({{$totalCount}} {{__('users')}})</p>
                         @else
-                            <<<<<<< HEAD
-                            <p>{{$averageRating}}</p>
-
-                            =======
                             <p>__('not_rated')</p>
-
-                            >>>>>>> e1042771b5f928992fd2428298abb97d6951e4fe
                         @endif
 
                 </div>
@@ -297,7 +283,6 @@
                         {{__('delete_review')}}</button>
                 </form>
             </div>
-            @endif
             @endauth
             </div>
             {{--Critic Reviews--}}
