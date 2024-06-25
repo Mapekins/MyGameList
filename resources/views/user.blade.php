@@ -27,7 +27,7 @@
                 <img src="{{ asset('images/websitelogo/logo.png') }}" alt="Avatar" class="h-[225px] w-[225px]">
             @endif
 
-            @if(Auth::check() && $current_user->hasRole(['Admin', 'Editor']))
+            @if(Auth::check() && $current_user->hasRole(['Admin', 'Editor']) && $user->id == $userid)
             <div id="ex3" class="modal">
                         <h2 class="text-lg font-bold">{{__('create_game')}}</h2>
                             <form action="{{ route('game.create') }}" method="POST" enctype="multipart/form-data" class="flex flex-col">

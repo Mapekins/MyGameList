@@ -1,4 +1,4 @@
-<x-layout>
+﻿<x-layout>
     @php
         $current_user = auth()->user();
         $userid = $current_user ? $current_user->id : null;
@@ -45,9 +45,9 @@
                 <div class="flex items-end">
                         @if ($averageRating !== null)
                             <p class="text-4xl text-blue-400">{{$averageRating}}⭐</p>
-                            <p class="text-xl"> ({{$totalCount}} {{__('users')}})</p>
+                            <p class="text-xl"> ({{$totalCount}} {{__('userscore')}})</p>
                         @else
-                            <p>__('not_rated')</p>
+                            <p>{{__('not_rated')}}</p>
                         @endif
 
                 </div>
@@ -69,9 +69,9 @@
                         <input type="hidden" name="game_list_id" value="{{ $userGameListEntry->id }}">
                         <!-- Other fields -->
                         <div class="mb-3">
-                            <label for="status" class="block text-lg font-semibold mb-2">Status:</label>
+                            <label for="status" class="block text-lg font-semibold mb-2">{{__('status')}}:</label>
                             <select id="status" name="status" class="border rounded-md px-3 py-1 w-32" required>
-                                <option value="">Select</option>
+                                <option value="">{{__('select')}}</option>
                                 <option value="1" {{ $userGameListEntry->status == 1 ? 'selected' : '' }}>{{__('status_playing')}}</option>
                                 <option value="2" {{ $userGameListEntry->status == 2 ? 'selected' : '' }}>
                                     {{__('status_completed')}}</option>
@@ -82,7 +82,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="score" class="block text-lg font-semibold mb-2">Your Score:</label>
+                            <label for="score" class="block text-lg font-semibold mb-2">{{__('your_score')}}:</label>
                             <select id="score" name="score" class="border rounded-md px-3 py-1 w-32">
                                 <option value="">{{__('select')}}</option>
                                 @for ($i = 1; $i <= 10; $i++)
@@ -92,7 +92,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="favorite" class="block text-lg font-semibold mb-2 w-[164px]">{{__('add_favorite')}} :</label>
+                            <label for="favorite" class="block text-lg font-semibold mb-2 w-[235px]">{{__('add_favorite')}} :</label>
                             <input type="checkbox" id="favorite" name="favorite" value="1" class="border rounded-md px-3 py-1 mb-2" {{ $userGameListEntry->favorite ? 'checked' : '' }}>
                         </div>
 
@@ -121,7 +121,7 @@
                 <input type="hidden" name="game_id" value="{{ $game->id }}">
                 <!-- Other fields -->
                 <div class="mb-3">
-                    <label for="status" class="block text-lg font-semibold mb-2">Status:</label>
+                    <label for="status" class="block text-lg font-semibold mb-2">{{__('status')}}:</label>
                     <select id="status" name="status" class="border rounded-md px-3 py-1 w-32" required>
                         <option value="">{{__('select')}}</option>
                         <option value="1">{{__('status_playing')}}</option>
@@ -133,7 +133,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="score" class="block text-lg font-semibold mb-2">{{__('your_score')}} :</label>
+                    <label for="score" class="block text-lg font-semibold mb-2">{{__('your_score')}}:</label>
                     <select id="score" name="score" class="border rounded-md px-3 py-1 w-32">
                         <option value="">{{__('select')}}</option>
                         @for ($i = 1; $i <= 10; $i++)
@@ -143,7 +143,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="favorite" class="block text-lg font-semibold mb-2 w-[164px]">{{__('add_favorite')}} :</label>
+                    <label for="favorite" class="block text-lg font-semibold mb-2 w-[235px]">{{__('add_favorite')}}:</label>
                     <input type="checkbox" id="favorite" name="favorite" value="1" class="border rounded-md px-3 py-1 mb-2">
                 </div>
 
@@ -208,19 +208,19 @@
 
         <h2 class="font-bold text-3xl mb-3">{{ $game->name }}</h2>
         <div class="mb-3">
-            <label class="block text-lg font-semibold mb-2">{{__('game_release')}} :</label>
+            <label class="block text-lg font-semibold mb-2">{{__('game_release')}}:</label>
             <p>{{ $game->release_date }}</p>
         </div>
         <div class="mb-3">
-            <label class="block text-lg font-semibold mb-2">{{__('genre')}} :</label>
+            <label class="block text-lg font-semibold mb-2">{{__('genre')}}:</label>
             <p>{{ $game->genre }}</p>
         </div>
         <div class="mb-3">
-            <label class="block text-lg font-semibold mb-2">{{__('developer')}} :</label>
+            <label class="block text-lg font-semibold mb-2">{{__('developer')}}:</label>
             <p>{{ $game->developer }}</p>
         </div>
         <div>
-            <label class="block text-lg font-semibold mb-2">{{__('game_description')}} :</label>
+            <label class="block text-lg font-semibold mb-2">{{__('game_description')}}:</label>
             <p>{{ $game->description }}</p>
         </div>
     </div>
@@ -241,7 +241,7 @@
                             <option value="{{ $i }}">{{ $i }} ⭐</option>
                         @endfor
                     </select>
-                    <input type="text" id="reviewText" name="text" class="m-5" placeholder="{{__('placeholder_for_review')}}"></input>
+                    <input type="text" id="reviewText" name="text" class="m-5" placeholder="{{__('placeholder_for_review')}}" required></input>
                     <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md ml-5 mb-3 text-nowrap m-auto transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600">
                         {{__('post_review')}}</button>
                 </form>
@@ -265,7 +265,7 @@
                             <option value="{{ $i }}" {{ $userReview->rating == $i ? 'selected' : '' }}>{{ $i }} ⭐</option>
                         @endfor
                     </select>
-                    <input type="text" id="reviewText" name="text" class="m-5" placeholder="{{__('placeholder_for_review')}}" value="{{ $userReview->text }}"/>
+                    <input type="text" id="reviewText" name="text" class="m-5" placeholder="{{__('placeholder_for_review')}}" value="{{ $userReview->text }}" required/>
                     <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md ml-5 mb-3 text-nowrap m-auto transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600">
                         {{__('edit_review')}}</button>
                 </form>
@@ -303,7 +303,7 @@
                                 <h1 class="ml-2">{{ $user->name }}</h1>
                             </a>
                         </div>
-                        {{--        Right Container--}}
+                        {{--Right Container--}}
                         <div class="">
                             <p class="text-gray-600 text-lg">
                                 {{$review->text}}
@@ -318,7 +318,7 @@
                                 <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md mb-3 text-nowrap transition-all duration-150 ease-in-out hover:scale-110 hover:bg-red-900">{{__('delete_review')}}</button>
                             </form>
                         @endif
-                        <h1 class="text-end">{{__('review')}}: {{$review->rating}} ⭐</h1>
+                        <h1 class="text-end">{{__('rating')}}: {{$review->rating}} ⭐</h1>
 
                     </div>
                 @endif

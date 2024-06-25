@@ -19,7 +19,7 @@
 </head>
 <body class="flex flex-col min-h-screen bg-gradient-to-r from-blue-100 to-blue-900">
 <x-navbar/>
-<div class="mt-36 flex-1 mb-96">
+<div class="mt-36 flex-1 mb-80">
     {{$slot}}
 </div>
 <x-footer/>

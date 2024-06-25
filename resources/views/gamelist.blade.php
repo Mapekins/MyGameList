@@ -3,9 +3,9 @@
         <section class="flex items-center justify-between">
         <h2 class="font-normal text-xl">
                 @if (isset($user) && $user->id == Auth::id())
-            {{__('viewing')}} <span class="font-bold">{{__('your')}} </span> {{__('game_list')}}
+            {{__('viewing')}} <span class="font-bold">{{__('your')}} </span> {{__('game_list_user')}}
                 @else
-                    {{__('viewing')}} <span class="font-bold">{{ $user->name }}'s</span> {{__('game_list')}}
+                    {{__('viewing')}} <span class="font-bold">{{ $user->name }}</span> {{__('game_list_user')}}
                 @endif
             </h2>
             <div class="flex space-x-4">

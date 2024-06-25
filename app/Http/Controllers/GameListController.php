@@ -28,7 +28,7 @@ class GameListController extends Controller
         }
 
         $gameList = $gameListQuery->get();
-        $message = $gameList->isEmpty() ? __('No games found matching your filters.') : '';
+        $message = $gameList->isEmpty() ? __('no_games_found') : '';
         return view('gamelist', compact('gameList', 'message', 'user'));
     }
 
@@ -100,7 +100,7 @@ class GameListController extends Controller
             'favorite' => $request->has('favorite'),
         ]);
 
-        return redirect()->route('game.show', ['id' => $gameList->game_id])->with('success', 'game_list_updated');
+        return redirect()->route('game.show', ['id' => $gameList->game_id])->with('success', __('game_list_updated'));
     }
 
     /**

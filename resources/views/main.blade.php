@@ -26,7 +26,7 @@
             @endif
                         <div class="text-wrap size-fit">
                             <h3>{{$gameName}}</h3>
-                            <p>{{__('rating')}} : {{$averageRating}}⭐</p>
+                            <p>{{__('rating')}}: {{$averageRating}}⭐</p>
                         </div>
                         </a>
                     </li>
@@ -71,7 +71,7 @@
                     @endforeach
 
                     @if ($hasCriticReview)
-                        <p>{{__('main_critics_reviews')}} :</p>
+                        <p>{{__('main_critics_reviews')}}:</p>
                         @foreach ($reviews->where('game_id', $averageRatings[0]['game_id']) as $review)
                             @php
                                 $user = $users->firstWhere('id', $review->user_id);
