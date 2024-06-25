@@ -8,13 +8,13 @@
                 <button class="rounded-full text-lg text-white bg-blue-400 p-1 px-3 border-2 border-white transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600">
                     {{__('users')}}</button>
             </a>
-            <a href="locale/en">
+            <a href="/locale/en">
                 <button class="rounded-full text-lg text-white bg-blue-400 p-1 px-3 border-2 border-white transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600"><span class="fi fi-gb"></span></button>
             </a>
-            <a href="locale/lv">
+            <a href="/locale/lv">
                 <button class="rounded-full text-lg text-white bg-blue-400 p-1 px-3 border-2 border-white transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600"><span class="fi fi-lv"></span></button>
             </a>
-            <a href="locale/ru">
+            <a href="/locale/ru">
                 <button class="rounded-full text-lg text-white bg-blue-400 p-1 px-3 border-2 border-white transition-all duration-150 ease-in-out hover:scale-110 hover:bg-blue-600"><span class="fi fi-ru"></span></button>
             </a>
         </div>
