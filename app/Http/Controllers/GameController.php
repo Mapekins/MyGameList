@@ -158,9 +158,11 @@ class GameController extends Controller
             'dev' => 'required|string',
         ]);
 
-        $path = $request->file('game_logo')->store('game_logos', 'public');
+        if ($request->hasFile('game_logo')) {
+            $path = $request->file('game_logo')->store('game_logos', 'public');
 
-        $request->game_logo = $path;
+            $request->game_logo = $path;
+        }
 
 
             // Create a new record
@@ -192,7 +194,10 @@ class GameController extends Controller
 
         if ($request->hasFile('game_logo')) {
             if ($request->game_logo) {
-                Storage::delete($game->image);
+                if ($game->image) {
+                    Storage::delete($game->image);
+                }
+                
             }
             $path = $request->file('game_logo')->store('game_logos', 'public');
 

@@ -24,7 +24,7 @@
     if ($totalCount > 0) {
         $averageRating = number_format($totalSum / $totalCount, 2, ',', '');
     } else {
-        $averageRating = 'Not yet rated! :(';
+        $averageRating = null;
     }
 @endphp
     <div class="container relative rounded-3xl shadow-inner p-5 pl-8 flex">
@@ -43,11 +43,11 @@
             <div class="mb-3">
                 <label class="block text-lg font-semibold mb-2">Rating:</label>
                 <div class="flex items-end">
-                @if ($averageRating !== 'Not yet rated! :(')
+                @if ($averageRating !== null)
                   <p class="text-4xl text-blue-400">{{$averageRating}}⭐</p>
                   <p class="text-xl"> ({{$totalCount}} users)</p>
                 @else
-                   <p>{{$averageRating}}</p>
+                   <p>Not yet rated! :(</p>
                    
                 @endif
                     
